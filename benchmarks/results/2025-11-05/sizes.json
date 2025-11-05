@@ -1,0 +1,210 @@
+{
+  "timestamp": "2025-11-05T01:31:01.703Z",
+  "testCases": {
+    "companies": {
+      "sizes": {
+        "json": {
+          "chars": 2609,
+          "bytes": 2609
+        },
+        "xml": {
+          "chars": 2848,
+          "bytes": 2848
+        },
+        "yaml": {
+          "chars": 1806,
+          "bytes": 1806
+        },
+        "toon": {
+          "chars": 1435,
+          "bytes": 1435
+        },
+        "ploon": {
+          "chars": 857,
+          "bytes": 857
+        },
+        "min.ploon": {
+          "chars": 856,
+          "bytes": 856
+        }
+      },
+      "savings": {
+        "ploon_vs_json": "67.2%",
+        "ploon_vs_xml": "69.9%",
+        "ploon_vs_yaml": "52.5%",
+        "ploon_vs_toon": "40.3%",
+        "ploon_min_vs_json": "67.2%",
+        "ploon_min_vs_xml": "69.9%",
+        "ploon_min_vs_yaml": "52.6%",
+        "ploon_min_vs_toon": "40.3%"
+      }
+    },
+    "ecommerce": {
+      "sizes": {
+        "json": {
+          "chars": 13412,
+          "bytes": 13412
+        },
+        "xml": {
+          "chars": 10806,
+          "bytes": 10806
+        },
+        "yaml": {
+          "chars": 8753,
+          "bytes": 8753
+        },
+        "toon": {
+          "chars": 6551,
+          "bytes": 6551
+        },
+        "ploon": {
+          "chars": 3198,
+          "bytes": 3198
+        },
+        "min.ploon": {
+          "chars": 3197,
+          "bytes": 3197
+        }
+      },
+      "savings": {
+        "ploon_vs_json": "76.2%",
+        "ploon_vs_xml": "70.4%",
+        "ploon_vs_yaml": "63.5%",
+        "ploon_vs_toon": "51.2%",
+        "ploon_min_vs_json": "76.2%",
+        "ploon_min_vs_xml": "70.4%",
+        "ploon_min_vs_yaml": "63.5%",
+        "ploon_min_vs_toon": "51.2%"
+      }
+    },
+    "orders": {
+      "sizes": {
+        "json": {
+          "chars": 1674,
+          "bytes": 1674
+        },
+        "xml": {
+          "chars": 1861,
+          "bytes": 1861
+        },
+        "yaml": {
+          "chars": 1139,
+          "bytes": 1139
+        },
+        "toon": {
+          "chars": 990,
+          "bytes": 990
+        },
+        "ploon": {
+          "chars": 513,
+          "bytes": 513
+        },
+        "min.ploon": {
+          "chars": 512,
+          "bytes": 512
+        }
+      },
+      "savings": {
+        "ploon_vs_json": "69.4%",
+        "ploon_vs_xml": "72.4%",
+        "ploon_vs_yaml": "55.0%",
+        "ploon_vs_toon": "48.2%",
+        "ploon_min_vs_json": "69.4%",
+        "ploon_min_vs_xml": "72.5%",
+        "ploon_min_vs_yaml": "55.0%",
+        "ploon_min_vs_toon": "48.3%"
+      }
+    },
+    "products": {
+      "sizes": {
+        "json": {
+          "chars": 1367,
+          "bytes": 1367
+        },
+        "xml": {
+          "chars": 1237,
+          "bytes": 1237
+        },
+        "yaml": {
+          "chars": 1164,
+          "bytes": 1164
+        },
+        "toon": {
+          "chars": 712,
+          "bytes": 712
+        },
+        "ploon": {
+          "chars": 377,
+          "bytes": 377
+        },
+        "min.ploon": {
+          "chars": 376,
+          "bytes": 376
+        }
+      },
+      "savings": {
+        "ploon_vs_json": "72.4%",
+        "ploon_vs_xml": "69.5%",
+        "ploon_vs_yaml": "67.6%",
+        "ploon_vs_toon": "47.1%",
+        "ploon_min_vs_json": "72.5%",
+        "ploon_min_vs_xml": "69.6%",
+        "ploon_min_vs_yaml": "67.7%",
+        "ploon_min_vs_toon": "47.2%"
+      }
+    },
+    "users": {
+      "sizes": {
+        "json": {
+          "chars": 87,
+          "bytes": 87
+        },
+        "xml": {
+          "chars": 67,
+          "bytes": 67
+        },
+        "yaml": {
+          "chars": 49,
+          "bytes": 49
+        },
+        "toon": {
+          "chars": 44,
+          "bytes": 44
+        },
+        "ploon": {
+          "chars": 47,
+          "bytes": 47
+        },
+        "min.ploon": {
+          "chars": 46,
+          "bytes": 46
+        }
+      },
+      "savings": {
+        "ploon_vs_json": "46.0%",
+        "ploon_vs_xml": "29.9%",
+        "ploon_vs_yaml": "4.1%",
+        "ploon_vs_toon": "-6.8%",
+        "ploon_min_vs_json": "47.1%",
+        "ploon_min_vs_xml": "31.3%",
+        "ploon_min_vs_yaml": "6.1%",
+        "ploon_min_vs_toon": "-4.5%"
+      }
+    }
+  },
+  "summary": {
+    "ploon": {
+      "average_vs_json": "66.2%",
+      "average_vs_xml": "62.4%",
+      "average_vs_yaml": "48.5%",
+      "average_vs_toon": "36.0%"
+    },
+    "ploon_minified": {
+      "average_vs_json": "66.5%",
+      "average_vs_xml": "62.8%",
+      "average_vs_yaml": "49.0%",
+      "average_vs_toon": "36.5%"
+    },
+    "test_count": 5
+  }
+}

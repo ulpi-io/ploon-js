@@ -1,0 +1,81 @@
+[products#10](colors#(hex,name,sizes#(size,sku,stock,warehouses#(address,coordinates,name,qty))),id,name,price)
+
+1:1|1|Shirt|29.99
+2:1|#FF0000|Red
+3:1|S|SH-R-S|50
+4:1|123 5th Ave, New York|40.7580,-73.9855|NYC Warehouse|20
+4:2|456 Sunset Blvd, Los Angeles|34.0522,-118.2437|LA Warehouse|30
+3:2|M|SH-R-M|30
+4:1|123 5th Ave, New York|40.7580,-73.9855|NYC Warehouse|15
+4:2|456 Sunset Blvd, Los Angeles|34.0522,-118.2437|LA Warehouse|15
+2:2|#0000FF|Blue
+3:1|S|SH-B-S|40
+4:1|123 5th Ave, New York|40.7580,-73.9855|NYC Warehouse|25
+4:2|456 Sunset Blvd, Los Angeles|34.0522,-118.2437|LA Warehouse|15
+1:2|2|Pants|49.99
+2:1|#000000|Black
+3:1|30|PT-B-30|15
+4:1|123 5th Ave, New York|40.7580,-73.9855|NYC Warehouse|8
+4:2|456 Sunset Blvd, Los Angeles|34.0522,-118.2437|LA Warehouse|7
+1:3|3|Jacket|89.99
+2:1|#000080|Navy
+3:1|M|JK-N-M|25
+4:1|123 5th Ave, New York|40.7580,-73.9855|NYC Warehouse|10
+4:2|456 Sunset Blvd, Los Angeles|34.0522,-118.2437|LA Warehouse|15
+3:2|L|JK-N-L|20
+4:1|123 5th Ave, New York|40.7580,-73.9855|NYC Warehouse|12
+4:2|456 Sunset Blvd, Los Angeles|34.0522,-118.2437|LA Warehouse|8
+1:4|4|Dress|69.99
+2:1|#FFB6C1|Floral
+3:1|S|DR-F-S|30
+4:1|123 5th Ave, New York|40.7580,-73.9855|NYC Warehouse|18
+4:2|456 Sunset Blvd, Los Angeles|34.0522,-118.2437|LA Warehouse|12
+2:2|#000000|Black
+3:1|M|DR-B-M|22
+4:1|123 5th Ave, New York|40.7580,-73.9855|NYC Warehouse|11
+4:2|456 Sunset Blvd, Los Angeles|34.0522,-118.2437|LA Warehouse|11
+1:5|5|Sneakers|79.99
+2:1|#FFFFFF|White
+3:1|9|SN-W-9|35
+4:1|123 5th Ave, New York|40.7580,-73.9855|NYC Warehouse|20
+4:2|456 Sunset Blvd, Los Angeles|34.0522,-118.2437|LA Warehouse|15
+3:2|10|SN-W-10|28
+4:1|123 5th Ave, New York|40.7580,-73.9855|NYC Warehouse|14
+4:2|456 Sunset Blvd, Los Angeles|34.0522,-118.2437|LA Warehouse|14
+1:6|6|Boots|129.99
+2:1|#8B4513|Brown
+3:1|8|BT-BR-8|18
+4:1|123 5th Ave, New York|40.7580,-73.9855|NYC Warehouse|10
+4:2|456 Sunset Blvd, Los Angeles|34.0522,-118.2437|LA Warehouse|8
+1:7|7|Hat|24.99
+2:1|#F5F5DC|Beige
+3:1|One Size|HT-BG-OS|60
+4:1|123 5th Ave, New York|40.7580,-73.9855|NYC Warehouse|35
+4:2|456 Sunset Blvd, Los Angeles|34.0522,-118.2437|LA Warehouse|25
+2:2|#808080|Gray
+3:1|One Size|HT-GR-OS|45
+4:1|123 5th Ave, New York|40.7580,-73.9855|NYC Warehouse|22
+4:2|456 Sunset Blvd, Los Angeles|34.0522,-118.2437|LA Warehouse|23
+1:8|8|Scarf|34.99
+2:1|#800020|Burgundy
+3:1|One Size|SC-BU-OS|40
+4:1|123 5th Ave, New York|40.7580,-73.9855|NYC Warehouse|24
+4:2|456 Sunset Blvd, Los Angeles|34.0522,-118.2437|LA Warehouse|16
+1:9|9|Backpack|59.99
+2:1|#008000|Green
+3:1|Regular|BP-GR-RG|32
+4:1|123 5th Ave, New York|40.7580,-73.9855|NYC Warehouse|18
+4:2|456 Sunset Blvd, Los Angeles|34.0522,-118.2437|LA Warehouse|14
+2:2|#000000|Black
+3:1|Large|BP-B-LG|26
+4:1|123 5th Ave, New York|40.7580,-73.9855|NYC Warehouse|13
+4:2|456 Sunset Blvd, Los Angeles|34.0522,-118.2437|LA Warehouse|13
+1:10|10|Watch|199.99
+2:1|#C0C0C0|Silver
+3:1|One Size|WT-SL-OS|12
+4:1|123 5th Ave, New York|40.7580,-73.9855|NYC Warehouse|7
+4:2|456 Sunset Blvd, Los Angeles|34.0522,-118.2437|LA Warehouse|5
+2:2|#FFD700|Gold
+3:1|One Size|WT-GD-OS|8
+4:1|123 5th Ave, New York|40.7580,-73.9855|NYC Warehouse|4
+4:2|456 Sunset Blvd, Los Angeles|34.0522,-118.2437|LA Warehouse|4

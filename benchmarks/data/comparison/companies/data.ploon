@@ -1,0 +1,22 @@
+[companies#3](ceo{email,id,name,yearsInRole},departments#(budget,employeeCount,id,name),founded,headquarters{address{city,state,street,zip},phone},id,name)
+
+1:1|2010|1|Tech Innovations Inc
+2 |sarah.chen@techinnovations.com|CEO-001|Sarah Chen|5
+2:1|15000000|150|DEPT-001|Engineering
+2:2|8000000|75|DEPT-002|Sales
+2:3|5000000|50|DEPT-003|Marketing
+2 |555-0100
+3 |San Francisco|CA|100 Tech Plaza|94105
+1:2|2005|2|Global Solutions Ltd
+2 |m.rodriguez@globalsolutions.com|CEO-002|Michael Rodriguez|8
+2:1|20000000|200|DEPT-004|Engineering
+2:2|10000000|120|DEPT-005|Operations
+2 |555-0200
+3 |New York|NY|200 Market Street|10001
+1:3|2015|3|DataFlow Systems
+2 |j.liu@dataflow.com|CEO-003|Jennifer Liu|3
+2:1|12000000|80|DEPT-006|Research
+2:2|18000000|120|DEPT-007|Engineering
+2:3|6000000|60|DEPT-008|Customer Success
+2 |555-0300
+3 |Austin|TX|300 Innovation Drive|78701

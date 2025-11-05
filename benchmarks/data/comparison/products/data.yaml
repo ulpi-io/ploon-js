@@ -1,0 +1,57 @@
+products:
+  - id: 1
+    name: Shirt
+    price: 29.99
+    colors:
+      - name: Red
+        hex: "#FF0000"
+        sizes:
+          - size: S
+            sku: SH-R-S
+            stock: 50
+          - size: M
+            sku: SH-R-M
+            stock: 30
+          - size: L
+            sku: SH-R-L
+            stock: 20
+      - name: Blue
+        hex: "#0000FF"
+        sizes:
+          - size: S
+            sku: SH-B-S
+            stock: 40
+          - size: M
+            sku: SH-B-M
+            stock: 25
+          - size: L
+            sku: SH-B-L
+            stock: 10
+  - id: 2
+    name: Pants
+    price: 49.99
+    colors:
+      - name: Black
+        hex: "#000000"
+        sizes:
+          - size: "30"
+            sku: PT-B-30
+            stock: 15
+          - size: "32"
+            sku: PT-B-32
+            stock: 20
+          - size: "34"
+            sku: PT-B-34
+            stock: 12
+      - name: Gray
+        hex: "#808080"
+        sizes:
+          - size: "30"
+            sku: PT-G-30
+            stock: 18
+          - size: "32"
+            sku: PT-G-32
+            stock: 22
+          - size: "34"
+            sku: PT-G-34
+            stock: 14

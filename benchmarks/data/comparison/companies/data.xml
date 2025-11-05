@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <companies>
+    <id>1</id>
+    <name>Tech Innovations Inc</name>
+    <founded>2010</founded>
+    <headquarters>
+      <address>
+        <street>100 Tech Plaza</street>
+        <city>San Francisco</city>
+        <state>CA</state>
+        <zip>94105</zip>
+      </address>
+      <phone>555-0100</phone>
+    </headquarters>
+    <ceo>
+      <id>CEO-001</id>
+      <name>Sarah Chen</name>
+      <email>sarah.chen@techinnovations.com</email>
+      <yearsInRole>5</yearsInRole>
+    </ceo>
+    <departments>
+      <id>DEPT-001</id>
+      <name>Engineering</name>
+      <employeeCount>150</employeeCount>
+      <budget>15000000</budget>
+    </departments>
+    <departments>
+      <id>DEPT-002</id>
+      <name>Sales</name>
+      <employeeCount>75</employeeCount>
+      <budget>8000000</budget>
+    </departments>
+    <departments>
+      <id>DEPT-003</id>
+      <name>Marketing</name>
+      <employeeCount>50</employeeCount>
+      <budget>5000000</budget>
+    </departments>
+  </companies>
+  <companies>
+    <id>2</id>
+    <name>Global Solutions Ltd</name>
+    <founded>2005</founded>
+    <headquarters>
+      <address>
+        <street>200 Market Street</street>
+        <city>New York</city>
+        <state>NY</state>
+        <zip>10001</zip>
+      </address>
+      <phone>555-0200</phone>
+    </headquarters>
+    <ceo>
+      <id>CEO-002</id>
+      <name>Michael Rodriguez</name>
+      <email>m.rodriguez@globalsolutions.com</email>
+      <yearsInRole>8</yearsInRole>
+    </ceo>
+    <departments>
+      <id>DEPT-004</id>
+      <name>Engineering</name>
+      <employeeCount>200</employeeCount>
+      <budget>20000000</budget>
+    </departments>
+    <departments>
+      <id>DEPT-005</id>
+      <name>Operations</name>
+      <employeeCount>120</employeeCount>
+      <budget>10000000</budget>
+    </departments>
+  </companies>
+  <companies>
+    <id>3</id>
+    <name>DataFlow Systems</name>
+    <founded>2015</founded>
+    <headquarters>
+      <address>
+        <street>300 Innovation Drive</street>
+        <city>Austin</city>
+        <state>TX</state>
+        <zip>78701</zip>
+      </address>
+      <phone>555-0300</phone>
+    </headquarters>
+    <ceo>
+      <id>CEO-003</id>
+      <name>Jennifer Liu</name>
+      <email>j.liu@dataflow.com</email>
+      <yearsInRole>3</yearsInRole>
+    </ceo>
+    <departments>
+      <id>DEPT-006</id>
+      <name>Research</name>
+      <employeeCount>80</employeeCount>
+      <budget>12000000</budget>
+    </departments>
+    <departments>
+      <id>DEPT-007</id>
+      <name>Engineering</name>
+      <employeeCount>120</employeeCount>
+      <budget>18000000</budget>
+    </departments>
+    <departments>
+      <id>DEPT-008</id>
+      <name>Customer Success</name>
+      <employeeCount>60</employeeCount>
+      <budget>6000000</budget>
+    </departments>
+  </companies>
+</root>

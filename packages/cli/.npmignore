@@ -1,0 +1,16 @@
+# Source files
+src/
+tsconfig.json
+tsdown.config.ts
+
+# Development
+node_modules/
+.pnpm-store/
+
+# Build tools
+.eslintrc
+.prettierrc
+
+# Misc
+*.log
+.DS_Store

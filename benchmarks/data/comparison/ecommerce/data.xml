@@ -1,0 +1,416 @@
+<products>
+  <id>1</id>
+  <name>Shirt</name>
+  <price>29.99</price>
+  <colors>
+    <name>Red</name>
+    <hex>#FF0000</hex>
+    <sizes>
+      <size>S</size>
+      <sku>SH-R-S</sku>
+      <stock>50</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>20</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>30</qty>
+      </warehouses>
+    </sizes>
+    <sizes>
+      <size>M</size>
+      <sku>SH-R-M</sku>
+      <stock>30</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>15</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>15</qty>
+      </warehouses>
+    </sizes>
+  </colors>
+  <colors>
+    <name>Blue</name>
+    <hex>#0000FF</hex>
+    <sizes>
+      <size>S</size>
+      <sku>SH-B-S</sku>
+      <stock>40</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>25</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>15</qty>
+      </warehouses>
+    </sizes>
+  </colors>
+</products>
+<products>
+  <id>2</id>
+  <name>Pants</name>
+  <price>49.99</price>
+  <colors>
+    <name>Black</name>
+    <hex>#000000</hex>
+    <sizes>
+      <size>30</size>
+      <sku>PT-B-30</sku>
+      <stock>15</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>8</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>7</qty>
+      </warehouses>
+    </sizes>
+  </colors>
+</products>
+<products>
+  <id>3</id>
+  <name>Jacket</name>
+  <price>89.99</price>
+  <colors>
+    <name>Navy</name>
+    <hex>#000080</hex>
+    <sizes>
+      <size>M</size>
+      <sku>JK-N-M</sku>
+      <stock>25</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>10</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>15</qty>
+      </warehouses>
+    </sizes>
+    <sizes>
+      <size>L</size>
+      <sku>JK-N-L</sku>
+      <stock>20</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>12</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>8</qty>
+      </warehouses>
+    </sizes>
+  </colors>
+</products>
+<products>
+  <id>4</id>
+  <name>Dress</name>
+  <price>69.99</price>
+  <colors>
+    <name>Floral</name>
+    <hex>#FFB6C1</hex>
+    <sizes>
+      <size>S</size>
+      <sku>DR-F-S</sku>
+      <stock>30</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>18</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>12</qty>
+      </warehouses>
+    </sizes>
+  </colors>
+  <colors>
+    <name>Black</name>
+    <hex>#000000</hex>
+    <sizes>
+      <size>M</size>
+      <sku>DR-B-M</sku>
+      <stock>22</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>11</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>11</qty>
+      </warehouses>
+    </sizes>
+  </colors>
+</products>
+<products>
+  <id>5</id>
+  <name>Sneakers</name>
+  <price>79.99</price>
+  <colors>
+    <name>White</name>
+    <hex>#FFFFFF</hex>
+    <sizes>
+      <size>9</size>
+      <sku>SN-W-9</sku>
+      <stock>35</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>20</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>15</qty>
+      </warehouses>
+    </sizes>
+    <sizes>
+      <size>10</size>
+      <sku>SN-W-10</sku>
+      <stock>28</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>14</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>14</qty>
+      </warehouses>
+    </sizes>
+  </colors>
+</products>
+<products>
+  <id>6</id>
+  <name>Boots</name>
+  <price>129.99</price>
+  <colors>
+    <name>Brown</name>
+    <hex>#8B4513</hex>
+    <sizes>
+      <size>8</size>
+      <sku>BT-BR-8</sku>
+      <stock>18</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>10</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>8</qty>
+      </warehouses>
+    </sizes>
+  </colors>
+</products>
+<products>
+  <id>7</id>
+  <name>Hat</name>
+  <price>24.99</price>
+  <colors>
+    <name>Beige</name>
+    <hex>#F5F5DC</hex>
+    <sizes>
+      <size>One Size</size>
+      <sku>HT-BG-OS</sku>
+      <stock>60</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>35</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>25</qty>
+      </warehouses>
+    </sizes>
+  </colors>
+  <colors>
+    <name>Gray</name>
+    <hex>#808080</hex>
+    <sizes>
+      <size>One Size</size>
+      <sku>HT-GR-OS</sku>
+      <stock>45</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>22</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>23</qty>
+      </warehouses>
+    </sizes>
+  </colors>
+</products>
+<products>
+  <id>8</id>
+  <name>Scarf</name>
+  <price>34.99</price>
+  <colors>
+    <name>Burgundy</name>
+    <hex>#800020</hex>
+    <sizes>
+      <size>One Size</size>
+      <sku>SC-BU-OS</sku>
+      <stock>40</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>24</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>16</qty>
+      </warehouses>
+    </sizes>
+  </colors>
+</products>
+<products>
+  <id>9</id>
+  <name>Backpack</name>
+  <price>59.99</price>
+  <colors>
+    <name>Green</name>
+    <hex>#008000</hex>
+    <sizes>
+      <size>Regular</size>
+      <sku>BP-GR-RG</sku>
+      <stock>32</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>18</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>14</qty>
+      </warehouses>
+    </sizes>
+  </colors>
+  <colors>
+    <name>Black</name>
+    <hex>#000000</hex>
+    <sizes>
+      <size>Large</size>
+      <sku>BP-B-LG</sku>
+      <stock>26</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>13</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>13</qty>
+      </warehouses>
+    </sizes>
+  </colors>
+</products>
+<products>
+  <id>10</id>
+  <name>Watch</name>
+  <price>199.99</price>
+  <colors>
+    <name>Silver</name>
+    <hex>#C0C0C0</hex>
+    <sizes>
+      <size>One Size</size>
+      <sku>WT-SL-OS</sku>
+      <stock>12</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>7</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>5</qty>
+      </warehouses>
+    </sizes>
+  </colors>
+  <colors>
+    <name>Gold</name>
+    <hex>#FFD700</hex>
+    <sizes>
+      <size>One Size</size>
+      <sku>WT-GD-OS</sku>
+      <stock>8</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>4</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>4</qty>
+      </warehouses>
+    </sizes>
+  </colors>
+</products>

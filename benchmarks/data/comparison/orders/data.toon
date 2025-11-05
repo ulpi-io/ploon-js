@@ -1,0 +1,44 @@
+orders[3]:
+  - id: 1001
+    date: 2024-01-15
+    total: 159.97
+    customer:
+      id: CUST-001
+      name: Alice Johnson
+      email: alice@example.com
+      address:
+        street: 123 Main St
+        city: New York
+        state: NY
+        zip: "10001"
+    items[2]{productId,productName,quantity,price}:
+      1,Shirt,2,29.99
+      2,Pants,2,49.99
+  - id: 1002
+    date: 2024-01-16
+    total: 89.97
+    customer:
+      id: CUST-002
+      name: Bob Smith
+      email: bob@example.com
+      address:
+        street: 456 Oak Ave
+        city: Los Angeles
+        state: CA
+        zip: "90001"
+    items[1]{productId,productName,quantity,price}:
+      1,Shirt,3,29.99
+  - id: 1003
+    date: 2024-01-17
+    total: 99.98
+    customer:
+      id: CUST-001
+      name: Alice Johnson
+      email: alice@example.com
+      address:
+        street: 123 Main St
+        city: New York
+        state: NY
+        zip: "10001"
+    items[1]{productId,productName,quantity,price}:
+      2,Pants,2,49.99

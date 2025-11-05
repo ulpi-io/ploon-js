@@ -1,0 +1,6 @@
+[orders#1](customer{address{city,street},id,name},date,id,items#(id,name))
+
+1:1|2024-01-15|1001
+2 |CUST-001|Alice
+3 |New York|123 Main St
+2:1|1|Shirt

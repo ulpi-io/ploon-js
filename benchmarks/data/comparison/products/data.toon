@@ -1,0 +1,33 @@
+products[2]:
+  - id: 1
+    name: Shirt
+    price: 29.99
+    colors[2]:
+      - name: Red
+        hex: #FF0000
+        sizes[3]{size,sku,stock}:
+          S,SH-R-S,50
+          M,SH-R-M,30
+          L,SH-R-L,20
+      - name: Blue
+        hex: #0000FF
+        sizes[3]{size,sku,stock}:
+          S,SH-B-S,40
+          M,SH-B-M,25
+          L,SH-B-L,10
+  - id: 2
+    name: Pants
+    price: 49.99
+    colors[2]:
+      - name: Black
+        hex: #000000
+        sizes[3]{size,sku,stock}:
+          "30",PT-B-30,15
+          "32",PT-B-32,20
+          "34",PT-B-34,12
+      - name: Gray
+        hex: #808080
+        sizes[3]{size,sku,stock}:
+          "30",PT-G-30,18
+          "32",PT-G-32,22
+          "34",PT-G-34,14

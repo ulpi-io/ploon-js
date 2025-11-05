@@ -1,0 +1,21 @@
+# Source files
+src/
+tsconfig.json
+tsdown.config.ts
+jest.config.js
+
+# Development
+node_modules/
+.pnpm-store/
+coverage/
+*.test.ts
+*.spec.ts
+__tests__/
+
+# Build tools
+.eslintrc
+.prettierrc
+
+# Misc
+*.log
+.DS_Store

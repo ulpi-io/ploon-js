@@ -1,0 +1,82 @@
+{
+  "orders": [
+    {
+      "customer": {
+        "address": {
+          "city": "New York",
+          "state": "NY",
+          "street": "123 Main St",
+          "zip": 10001
+        },
+        "email": "alice@example.com",
+        "id": "CUST-001",
+        "name": "Alice Johnson"
+      },
+      "date": "2024-01-15",
+      "id": 1001,
+      "items": [
+        {
+          "price": 29.99,
+          "productId": 1,
+          "productName": "Shirt",
+          "quantity": 2
+        },
+        {
+          "price": 49.99,
+          "productId": 2,
+          "productName": "Pants",
+          "quantity": 2
+        }
+      ],
+      "total": 159.97
+    },
+    {
+      "customer": {
+        "address": {
+          "city": "Los Angeles",
+          "state": "CA",
+          "street": "456 Oak Ave",
+          "zip": 90001
+        },
+        "email": "bob@example.com",
+        "id": "CUST-002",
+        "name": "Bob Smith"
+      },
+      "date": "2024-01-16",
+      "id": 1002,
+      "items": [
+        {
+          "price": 29.99,
+          "productId": 1,
+          "productName": "Shirt",
+          "quantity": 3
+        }
+      ],
+      "total": 89.97
+    },
+    {
+      "customer": {
+        "address": {
+          "city": "New York",
+          "state": "NY",
+          "street": "123 Main St",
+          "zip": 10001
+        },
+        "email": "alice@example.com",
+        "id": "CUST-001",
+        "name": "Alice Johnson"
+      },
+      "date": "2024-01-17",
+      "id": 1003,
+      "items": [
+        {
+          "price": 49.99,
+          "productId": 2,
+          "productName": "Pants",
+          "quantity": 2
+        }
+      ],
+      "total": 99.98
+    }
+  ]
+}

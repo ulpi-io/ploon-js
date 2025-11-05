@@ -1,0 +1,302 @@
+products:
+  - id: 1
+    name: Shirt
+    price: 29.99
+    colors:
+      - name: Red
+        hex: "#FF0000"
+        sizes:
+          - size: S
+            sku: SH-R-S
+            stock: 50
+            warehouses:
+              - name: NYC Warehouse
+                address: 123 5th Ave, New York
+                coordinates: 40.7580,-73.9855
+                qty: 20
+              - name: LA Warehouse
+                address: 456 Sunset Blvd, Los Angeles
+                coordinates: 34.0522,-118.2437
+                qty: 30
+          - size: M
+            sku: SH-R-M
+            stock: 30
+            warehouses:
+              - name: NYC Warehouse
+                address: 123 5th Ave, New York
+                coordinates: 40.7580,-73.9855
+                qty: 15
+              - name: LA Warehouse
+                address: 456 Sunset Blvd, Los Angeles
+                coordinates: 34.0522,-118.2437
+                qty: 15
+      - name: Blue
+        hex: "#0000FF"
+        sizes:
+          - size: S
+            sku: SH-B-S
+            stock: 40
+            warehouses:
+              - name: NYC Warehouse
+                address: 123 5th Ave, New York
+                coordinates: 40.7580,-73.9855
+                qty: 25
+              - name: LA Warehouse
+                address: 456 Sunset Blvd, Los Angeles
+                coordinates: 34.0522,-118.2437
+                qty: 15
+  - id: 2
+    name: Pants
+    price: 49.99
+    colors:
+      - name: Black
+        hex: "#000000"
+        sizes:
+          - size: "30"
+            sku: PT-B-30
+            stock: 15
+            warehouses:
+              - name: NYC Warehouse
+                address: 123 5th Ave, New York
+                coordinates: 40.7580,-73.9855
+                qty: 8
+              - name: LA Warehouse
+                address: 456 Sunset Blvd, Los Angeles
+                coordinates: 34.0522,-118.2437
+                qty: 7
+  - id: 3
+    name: Jacket
+    price: 89.99
+    colors:
+      - name: Navy
+        hex: "#000080"
+        sizes:
+          - size: M
+            sku: JK-N-M
+            stock: 25
+            warehouses:
+              - name: NYC Warehouse
+                address: 123 5th Ave, New York
+                coordinates: 40.7580,-73.9855
+                qty: 10
+              - name: LA Warehouse
+                address: 456 Sunset Blvd, Los Angeles
+                coordinates: 34.0522,-118.2437
+                qty: 15
+          - size: L
+            sku: JK-N-L
+            stock: 20
+            warehouses:
+              - name: NYC Warehouse
+                address: 123 5th Ave, New York
+                coordinates: 40.7580,-73.9855
+                qty: 12
+              - name: LA Warehouse
+                address: 456 Sunset Blvd, Los Angeles
+                coordinates: 34.0522,-118.2437
+                qty: 8
+  - id: 4
+    name: Dress
+    price: 69.99
+    colors:
+      - name: Floral
+        hex: "#FFB6C1"
+        sizes:
+          - size: S
+            sku: DR-F-S
+            stock: 30
+            warehouses:
+              - name: NYC Warehouse
+                address: 123 5th Ave, New York
+                coordinates: 40.7580,-73.9855
+                qty: 18
+              - name: LA Warehouse
+                address: 456 Sunset Blvd, Los Angeles
+                coordinates: 34.0522,-118.2437
+                qty: 12
+      - name: Black
+        hex: "#000000"
+        sizes:
+          - size: M
+            sku: DR-B-M
+            stock: 22
+            warehouses:
+              - name: NYC Warehouse
+                address: 123 5th Ave, New York
+                coordinates: 40.7580,-73.9855
+                qty: 11
+              - name: LA Warehouse
+                address: 456 Sunset Blvd, Los Angeles
+                coordinates: 34.0522,-118.2437
+                qty: 11
+  - id: 5
+    name: Sneakers
+    price: 79.99
+    colors:
+      - name: White
+        hex: "#FFFFFF"
+        sizes:
+          - size: "9"
+            sku: SN-W-9
+            stock: 35
+            warehouses:
+              - name: NYC Warehouse
+                address: 123 5th Ave, New York
+                coordinates: 40.7580,-73.9855
+                qty: 20
+              - name: LA Warehouse
+                address: 456 Sunset Blvd, Los Angeles
+                coordinates: 34.0522,-118.2437
+                qty: 15
+          - size: "10"
+            sku: SN-W-10
+            stock: 28
+            warehouses:
+              - name: NYC Warehouse
+                address: 123 5th Ave, New York
+                coordinates: 40.7580,-73.9855
+                qty: 14
+              - name: LA Warehouse
+                address: 456 Sunset Blvd, Los Angeles
+                coordinates: 34.0522,-118.2437
+                qty: 14
+  - id: 6
+    name: Boots
+    price: 129.99
+    colors:
+      - name: Brown
+        hex: "#8B4513"
+        sizes:
+          - size: "8"
+            sku: BT-BR-8
+            stock: 18
+            warehouses:
+              - name: NYC Warehouse
+                address: 123 5th Ave, New York
+                coordinates: 40.7580,-73.9855
+                qty: 10
+              - name: LA Warehouse
+                address: 456 Sunset Blvd, Los Angeles
+                coordinates: 34.0522,-118.2437
+                qty: 8
+  - id: 7
+    name: Hat
+    price: 24.99
+    colors:
+      - name: Beige
+        hex: "#F5F5DC"
+        sizes:
+          - size: One Size
+            sku: HT-BG-OS
+            stock: 60
+            warehouses:
+              - name: NYC Warehouse
+                address: 123 5th Ave, New York
+                coordinates: 40.7580,-73.9855
+                qty: 35
+              - name: LA Warehouse
+                address: 456 Sunset Blvd, Los Angeles
+                coordinates: 34.0522,-118.2437
+                qty: 25
+      - name: Gray
+        hex: "#808080"
+        sizes:
+          - size: One Size
+            sku: HT-GR-OS
+            stock: 45
+            warehouses:
+              - name: NYC Warehouse
+                address: 123 5th Ave, New York
+                coordinates: 40.7580,-73.9855
+                qty: 22
+              - name: LA Warehouse
+                address: 456 Sunset Blvd, Los Angeles
+                coordinates: 34.0522,-118.2437
+                qty: 23
+  - id: 8
+    name: Scarf
+    price: 34.99
+    colors:
+      - name: Burgundy
+        hex: "#800020"
+        sizes:
+          - size: One Size
+            sku: SC-BU-OS
+            stock: 40
+            warehouses:
+              - name: NYC Warehouse
+                address: 123 5th Ave, New York
+                coordinates: 40.7580,-73.9855
+                qty: 24
+              - name: LA Warehouse
+                address: 456 Sunset Blvd, Los Angeles
+                coordinates: 34.0522,-118.2437
+                qty: 16
+  - id: 9
+    name: Backpack
+    price: 59.99
+    colors:
+      - name: Green
+        hex: "#008000"
+        sizes:
+          - size: Regular
+            sku: BP-GR-RG
+            stock: 32
+            warehouses:
+              - name: NYC Warehouse
+                address: 123 5th Ave, New York
+                coordinates: 40.7580,-73.9855
+                qty: 18
+              - name: LA Warehouse
+                address: 456 Sunset Blvd, Los Angeles
+                coordinates: 34.0522,-118.2437
+                qty: 14
+      - name: Black
+        hex: "#000000"
+        sizes:
+          - size: Large
+            sku: BP-B-LG
+            stock: 26
+            warehouses:
+              - name: NYC Warehouse
+                address: 123 5th Ave, New York
+                coordinates: 40.7580,-73.9855
+                qty: 13
+              - name: LA Warehouse
+                address: 456 Sunset Blvd, Los Angeles
+                coordinates: 34.0522,-118.2437
+                qty: 13
+  - id: 10
+    name: Watch
+    price: 199.99
+    colors:
+      - name: Silver
+        hex: "#C0C0C0"
+        sizes:
+          - size: One Size
+            sku: WT-SL-OS
+            stock: 12
+            warehouses:
+              - name: NYC Warehouse
+                address: 123 5th Ave, New York
+                coordinates: 40.7580,-73.9855
+                qty: 7
+              - name: LA Warehouse
+                address: 456 Sunset Blvd, Los Angeles
+                coordinates: 34.0522,-118.2437
+                qty: 5
+      - name: Gold
+        hex: "#FFD700"
+        sizes:
+          - size: One Size
+            sku: WT-GD-OS
+            stock: 8
+            warehouses:
+              - name: NYC Warehouse
+                address: 123 5th Ave, New York
+                coordinates: 40.7580,-73.9855
+                qty: 4
+              - name: LA Warehouse
+                address: 456 Sunset Blvd, Los Angeles
+                coordinates: 34.0522,-118.2437
+                qty: 4

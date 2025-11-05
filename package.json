@@ -1,0 +1,27 @@
+{
+  "name": "ploon-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "clean": "pnpm -r clean"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "dependencies": {
+    "@toon-format/cli": "^0.7.3",
+    "@toon-format/toon": "^0.7.3",
+    "fast-xml-parser": "^4.5.3",
+    "tiktoken": "^1.0.22",
+    "yaml": "^2.8.1"
+  }
+}

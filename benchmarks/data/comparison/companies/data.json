@@ -1,0 +1,118 @@
+{
+  "companies": [
+    {
+      "id": 1,
+      "name": "Tech Innovations Inc",
+      "founded": 2010,
+      "headquarters": {
+        "address": {
+          "street": "100 Tech Plaza",
+          "city": "San Francisco",
+          "state": "CA",
+          "zip": 94105
+        },
+        "phone": "555-0100"
+      },
+      "ceo": {
+        "id": "CEO-001",
+        "name": "Sarah Chen",
+        "email": "sarah.chen@techinnovations.com",
+        "yearsInRole": 5
+      },
+      "departments": [
+        {
+          "id": "DEPT-001",
+          "name": "Engineering",
+          "employeeCount": 150,
+          "budget": 15000000
+        },
+        {
+          "id": "DEPT-002",
+          "name": "Sales",
+          "employeeCount": 75,
+          "budget": 8000000
+        },
+        {
+          "id": "DEPT-003",
+          "name": "Marketing",
+          "employeeCount": 50,
+          "budget": 5000000
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Global Solutions Ltd",
+      "founded": 2005,
+      "headquarters": {
+        "address": {
+          "street": "200 Market Street",
+          "city": "New York",
+          "state": "NY",
+          "zip": 10001
+        },
+        "phone": "555-0200"
+      },
+      "ceo": {
+        "id": "CEO-002",
+        "name": "Michael Rodriguez",
+        "email": "m.rodriguez@globalsolutions.com",
+        "yearsInRole": 8
+      },
+      "departments": [
+        {
+          "id": "DEPT-004",
+          "name": "Engineering",
+          "employeeCount": 200,
+          "budget": 20000000
+        },
+        {
+          "id": "DEPT-005",
+          "name": "Operations",
+          "employeeCount": 120,
+          "budget": 10000000
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "DataFlow Systems",
+      "founded": 2015,
+      "headquarters": {
+        "address": {
+          "street": "300 Innovation Drive",
+          "city": "Austin",
+          "state": "TX",
+          "zip": 78701
+        },
+        "phone": "555-0300"
+      },
+      "ceo": {
+        "id": "CEO-003",
+        "name": "Jennifer Liu",
+        "email": "j.liu@dataflow.com",
+        "yearsInRole": 3
+      },
+      "departments": [
+        {
+          "id": "DEPT-006",
+          "name": "Research",
+          "employeeCount": 80,
+          "budget": 12000000
+        },
+        {
+          "id": "DEPT-007",
+          "name": "Engineering",
+          "employeeCount": 120,
+          "budget": 18000000
+        },
+        {
+          "id": "DEPT-008",
+          "name": "Customer Success",
+          "employeeCount": 60,
+          "budget": 6000000
+        }
+      ]
+    }
+  ]
+}

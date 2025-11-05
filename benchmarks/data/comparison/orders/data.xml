@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orders>
+  <order id="1001">
+    <date>2024-01-15</date>
+    <total>159.97</total>
+    <customer>
+      <id>CUST-001</id>
+      <name>Alice Johnson</name>
+      <email>alice@example.com</email>
+      <address>
+        <street>123 Main St</street>
+        <city>New York</city>
+        <state>NY</state>
+        <zip>10001</zip>
+      </address>
+    </customer>
+    <items>
+      <item>
+        <productId>1</productId>
+        <productName>Shirt</productName>
+        <quantity>2</quantity>
+        <price>29.99</price>
+      </item>
+      <item>
+        <productId>2</productId>
+        <productName>Pants</productName>
+        <quantity>2</quantity>
+        <price>49.99</price>
+      </item>
+    </items>
+  </order>
+  <order id="1002">
+    <date>2024-01-16</date>
+    <total>89.97</total>
+    <customer>
+      <id>CUST-002</id>
+      <name>Bob Smith</name>
+      <email>bob@example.com</email>
+      <address>
+        <street>456 Oak Ave</street>
+        <city>Los Angeles</city>
+        <state>CA</state>
+        <zip>90001</zip>
+      </address>
+    </customer>
+    <items>
+      <item>
+        <productId>1</productId>
+        <productName>Shirt</productName>
+        <quantity>3</quantity>
+        <price>29.99</price>
+      </item>
+    </items>
+  </order>
+  <order id="1003">
+    <date>2024-01-17</date>
+    <total>99.98</total>
+    <customer>
+      <id>CUST-001</id>
+      <name>Alice Johnson</name>
+      <email>alice@example.com</email>
+      <address>
+        <street>123 Main St</street>
+        <city>New York</city>
+        <state>NY</state>
+        <zip>10001</zip>
+      </address>
+    </customer>
+    <items>
+      <item>
+        <productId>2</productId>
+        <productName>Pants</productName>
+        <quantity>2</quantity>
+        <price>49.99</price>
+      </item>
+    </items>
+  </order>
+</orders>

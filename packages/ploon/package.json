@@ -1,0 +1,61 @@
+{
+  "name": "ploon",
+  "version": "1.0.1",
+  "description": "Path-Level Object Oriented Notation - The Most Token-Efficient Format for Nested Hierarchical Data",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "test": "jest --passWithNoTests",
+    "test:coverage": "jest --coverage --passWithNoTests",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "pnpm build && pnpm typecheck"
+  },
+  "keywords": [
+    "ploon",
+    "plon",
+    "serialization",
+    "data-format",
+    "token-efficient",
+    "llm",
+    "json",
+    "xml",
+    "yaml"
+  ],
+  "author": "Ciprian Spiridon",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ulpi-io/ploon-js.git"
+  },
+  "homepage": "https://ploon.ai",
+  "bugs": {
+    "url": "https://github.com/ulpi-io/ploon-js/issues"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.3.5",
+    "yaml": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.10.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "tsdown": "^0.2.13",
+    "typescript": "^5.3.3"
+  }
+}

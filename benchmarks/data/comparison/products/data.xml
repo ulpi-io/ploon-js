@@ -1,0 +1,42 @@
+<products>
+  <product id="1">
+    <name>Shirt</name>
+    <price>29.99</price>
+    <colors>
+      <color name="Red" hex="#FF0000">
+        <sizes>
+          <size value="S" sku="SH-R-S" stock="50" />
+          <size value="M" sku="SH-R-M" stock="30" />
+          <size value="L" sku="SH-R-L" stock="20" />
+        </sizes>
+      </color>
+      <color name="Blue" hex="#0000FF">
+        <sizes>
+          <size value="S" sku="SH-B-S" stock="40" />
+          <size value="M" sku="SH-B-M" stock="25" />
+          <size value="L" sku="SH-B-L" stock="10" />
+        </sizes>
+      </color>
+    </colors>
+  </product>
+  <product id="2">
+    <name>Pants</name>
+    <price>49.99</price>
+    <colors>
+      <color name="Black" hex="#000000">
+        <sizes>
+          <size value="30" sku="PT-B-30" stock="15" />
+          <size value="32" sku="PT-B-32" stock="20" />
+          <size value="34" sku="PT-B-34" stock="12" />
+        </sizes>
+      </color>
+      <color name="Gray" hex="#808080">
+        <sizes>
+          <size value="30" sku="PT-G-30" stock="18" />
+          <size value="32" sku="PT-G-32" stock="22" />
+          <size value="34" sku="PT-G-34" stock="14" />
+        </sizes>
+      </color>
+    </colors>
+  </product>
+</products>
