@@ -18,18 +18,28 @@ When sending data to LLMs, every token counts. PLOON optimizes hierarchical data
 - **Single schema declaration**: Zero key repetition
 - **Dual format strategy**: Human-readable + machine-optimized
 
-### Token Efficiency
+### Key Findings
 
-PLOON achieves **superior token efficiency** compared to all formats, including TOON:
+| Metric | vs JSON | vs XML | vs YAML | vs TOON |
+|--------|---------|--------|---------|---------|
+| **File Size (Standard)** | 66.2% ↓ | 62.4% ↓ | 48.5% ↓ | **36.0% ↓** |
+| **File Size (Minified)** | 66.5% ↓ | 62.8% ↓ | 49.0% ↓ | **36.5% ↓** |
+| **Token Count (Standard)** | 49.1% ↓ | 48.7% ↓ | 24.8% ↓ | **14.1% ↓** |
+| **Token Count (Minified)** | 49.1% ↓ | 48.7% ↓ | 24.8% ↓ | **14.1% ↓** |
+| **Round-Trip Accuracy** | - | - | - | **100%** (5/5) |
 
-| Feature | PLOON | TOON |
-|---------|-------|------|
-| **Hierarchy** | Path-based (depth:index) | Indentation-based |
-| **Advantage** | Constant token cost per path | Human-readable |
-| **Best for** | Deep nesting (2+ levels) | Flat/shallow data |
-| **Token savings** | **44% vs JSON** (standard)<br>**47% vs JSON** (minified) | ~40% vs JSON |
-| **vs TOON** | **4.4% better** (standard)<br>**9.4% better** (minified) | baseline |
-| **Deep nesting** | **+56% vs TOON** (companies dataset) | Poor scaling |
+**PLOON beats TOON on BOTH metrics:**
+- 36.0% smaller file size (36.5% minified)
+- 14.1% fewer tokens with depth:index format + nested object support
+
+### Cost Savings (GPT-5 @ $1.25/1M tokens)
+
+- **Average savings:** $616.25 per 1M API calls vs JSON
+
+**ROI Example (10M API calls/month):**
+- With JSON: $18,707.48/month
+- With PLOON: $12,544.98/month
+- **Monthly Savings: $6,162.50** (32.9% reduction)
 
 ---
 
