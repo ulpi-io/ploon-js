@@ -38,7 +38,7 @@
   "dependencies": {
     "commander": "^11.1.0",
     "consola": "^3.2.3",
-    "ploon": "^1.0.1",
+    "ploon": "^1.0.2",
     "tiktoken": "^1.0.22"
   },
   "devDependencies": {
