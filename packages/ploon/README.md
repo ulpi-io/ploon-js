@@ -395,11 +395,23 @@ stringify(data, { config: PLOON_COMPACT })
 
 ### Path Notation
 
-Paths use `depth:index` format for constant token cost:
+PLOON uses dual path notation to distinguish arrays from objects:
+
+**Arrays** use `depth:index` format:
 - `1:1` - First item at depth 1
 - `2:1` - First child (depth 2) of item 1:1
 - `3:1` - First grandchild (depth 3)
 - `5:4` - Fourth item at depth 5
+
+**Objects** use `depth ` format (depth + space):
+- `2 ` - Object at depth 2
+- `3 ` - Nested object at depth 3
+- `4 ` - Deeply nested object at depth 4
+
+**Schema Notation:**
+- Arrays: `fieldName#(nestedFields)` - e.g., `items#(id,name,price)`
+- Objects: `fieldName{nestedFields}` - e.g., `address{street,city,zip}`
+- Both can nest infinitely: `customer{name,address{city,country{code,name}}}`
 
 ### Escaping
 

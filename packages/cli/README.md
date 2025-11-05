@@ -267,6 +267,54 @@ ploon data.ploon --validate && echo "Valid!" || echo "Invalid!"
 
 ---
 
+## 📐 Understanding Path Notation
+
+PLOON uses **dual path notation** to distinguish between arrays and objects:
+
+### Array Paths: `depth:index`
+
+Used for array elements with an index component:
+- `1:1` - First item at depth 1
+- `1:2` - Second item at depth 1
+- `2:1` - First item at depth 2 (nested in `1:1`)
+- `3:2` - Second item at depth 3
+
+### Object Paths: `depth ` (depth + space)
+
+Used for object elements without an index:
+- `2 ` - Object at depth 2
+- `3 ` - Object at depth 3
+- `4 ` - Object at depth 4
+
+### When to Use Each
+
+**Arrays** (`#` in schema): Use `depth:index` format
+```
+[products#2](id,name)    ← Array marker #
+1:1|1|Laptop             ← Array path
+1:2|2|Mouse              ← Array path
+```
+
+**Objects** (`{}` in schema): Use `depth ` format
+```
+[orders#1](customer{name},id)    ← Object marker {}
+1:1|101                          ← Array path (order)
+2 |Alice                         ← Object path (customer)
+```
+
+**Mixed structures** combine both notations seamlessly:
+```
+[orders#1](customer{address{city}},items#(name,price),id)
+
+1:1|101                  ← Order (array element)
+2 |Alice                 ← Customer (object)
+3 |NYC                   ← Address (nested object)
+2:1|Laptop|999           ← Item 1 (array element)
+2:2|Mouse|25             ← Item 2 (array element)
+```
+
+---
+
 ## 🔗 Links
 
 - **Core Library**: [`ploon`](https://www.npmjs.com/package/ploon) - For programmatic use

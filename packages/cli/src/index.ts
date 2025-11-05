@@ -15,7 +15,7 @@ const program = new Command()
 program
   .name('ploon')
   .description('PLOON - Path-Level Object Oriented Notation CLI')
-  .version('1.0.0')
+  .version('1.0.3')
 
 program
   .argument('[input]', 'Input file (or stdin if not provided)')
@@ -28,7 +28,7 @@ program
   .option('--stats', 'Show token count comparison')
   .option('-c, --config <file>', 'Custom configuration file')
   .option('--field-delimiter <char>', 'Field delimiter (default: |)')
-  .option('--path-separator <char>', 'Path separator (default: .)')
+  .option('--path-separator <char>', 'Path separator (default: :)')
   .option('--array-marker <char>', 'Array size marker (default: #)')
   .option('--escape-char <char>', 'Escape character (default: \\)')
   .action(async (input, options) => {
