@@ -31,6 +31,7 @@ program
   .option('--path-separator <char>', 'Path separator (default: :)')
   .option('--array-marker <char>', 'Array size marker (default: #)')
   .option('--escape-char <char>', 'Escape character (default: \\)')
+  .option('--no-preserve-empty-fields', 'Remove null/empty values from arrays (cleaner output)')
   .action(async (input, options) => {
     try {
       // Read input
@@ -42,6 +43,7 @@ program
       if (options.pathSeparator !== undefined) config.pathSeparator = options.pathSeparator
       if (options.arrayMarker !== undefined) config.arraySizeMarker = options.arrayMarker
       if (options.escapeChar !== undefined) config.escapeChar = options.escapeChar
+      if (options.preserveEmptyFields !== undefined) config.preserveEmptyFields = options.preserveEmptyFields
 
       // Build convert options
       const convertOptions: ConvertOptions = {
