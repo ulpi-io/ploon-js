@@ -26,6 +26,9 @@ export function escapeValue(value: string, config: PloonConfig): string {
     escaped = escaped.replace(new RegExp(escapeRegex(recordSeparator), 'g'), `${escapeChar}${recordSeparator}`)
   }
 
+  // Escape comma (used in primitive arrays)
+  escaped = escaped.replace(/,/g, `${escapeChar},`)
+
   // NOTE: We do NOT escape path separator (.) in data values
   // The scanner splits by field delimiter (|) first, isolating the path from data
   // So periods in data values (29.99, emails, coordinates) don't conflict with path notation (1.1.1)
@@ -50,6 +53,9 @@ export function unescapeValue(value: string, config: PloonConfig): string {
     unescaped = unescaped.replace(new RegExp(`\\${escapeChar}${escapeRegex(recordSeparator)}`, 'g'), recordSeparator)
   }
 
+  // Unescape comma
+  unescaped = unescaped.replace(new RegExp(`\\${escapeChar},`, 'g'), ',')
+
   // Unescape escape character itself (must be last)
   unescaped = unescaped.replace(new RegExp(`\\${escapeChar}\\${escapeChar}`, 'g'), escapeChar)
 
@@ -61,17 +67,46 @@ export function unescapeValue(value: string, config: PloonConfig): string {
 /**
  * Format a value for output (converts to string and escapes)
  */
-export function formatValue(value: unknown, config: PloonConfig): string {
+export function formatValue(value: unknown, config: PloonConfig, isOptional?: boolean): string {
   if (value === null) {
     return 'null'
   }
 
   if (value === undefined) {
-    return 'null'
+    // For optional fields, empty string means "field not present"
+    // For required fields, undefined becomes 'null'
+    return isOptional ? '' : 'null'
   }
 
   const str = String(value)
   return escapeValue(str, config)
+}
+
+/**
+ * Format a primitive array for inline encoding (comma-separated)
+ * Handles null values and respects preserveEmptyFields config
+ */
+export function formatPrimitiveArray(array: unknown[], config: PloonConfig, preserveEmpty: boolean): string {
+  // Map each element: null → '', then format
+  let elements = array.map(item => {
+    if (item === null) {
+      return '' // Convert null to empty string
+    }
+    if (item === undefined) {
+      return ''
+    }
+    // Format the value (escapes commas, pipes, etc.)
+    const str = String(item)
+    return escapeValue(str, config)
+  })
+
+  // If not preserving empty fields, filter out empty strings
+  if (!preserveEmpty) {
+    elements = elements.filter(el => el !== '')
+  }
+
+  // Join with commas
+  return elements.join(',')
 }
 
 /**
@@ -83,6 +118,7 @@ function escapeRegex(str: string): string {
 
 /**
  * Split a string by delimiter, respecting escapes
+ * Only unescapes the delimiter and escape char itself, preserves other escape sequences
  */
 export function splitEscaped(str: string, delimiter: string, escapeChar: string): string[] {
   const parts: string[] = []
@@ -91,9 +127,19 @@ export function splitEscaped(str: string, delimiter: string, escapeChar: string)
 
   while (i < str.length) {
     if (str[i] === escapeChar && i + 1 < str.length) {
-      // Escaped character - include the next character literally
-      current += str[i + 1]
-      i += 2
+      const nextChar = str[i + 1]!
+
+      // Only unescape if it's the delimiter or escape char itself
+      // Other escape sequences stay escaped for later processing
+      if (nextChar === delimiter || nextChar === escapeChar) {
+        // Unescape - include just the next character
+        current += nextChar
+        i += 2
+      } else {
+        // Keep the escape sequence intact
+        current += str[i] + nextChar
+        i += 2
+      }
     } else if (str.slice(i, i + delimiter.length) === delimiter) {
       // Found delimiter
       parts.push(current)

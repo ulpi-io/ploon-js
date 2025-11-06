@@ -26,7 +26,7 @@ When sending data to LLMs, every token counts. PLOON optimizes hierarchical data
 | **File Size (Minified)** | 66.5% ↓ | 62.8% ↓ | 49.0% ↓ | **36.5% ↓** |
 | **Token Count (Standard)** | 49.1% ↓ | 48.7% ↓ | 24.8% ↓ | **14.1% ↓** |
 | **Token Count (Minified)** | 49.1% ↓ | 48.7% ↓ | 24.8% ↓ | **14.1% ↓** |
-| **Round-Trip Accuracy** | - | - | - | **100%** (5/5) |
+| **Round-Trip Accuracy** | - | - | - | **91.7%** (11/12) |
 
 **PLOON beats TOON on BOTH metrics:**
 - 36.0% smaller file size (36.5% minified)
@@ -221,6 +221,69 @@ const result = validate(input)
 
 ---
 
+## ⚠️ Type Preservation & Limitations
+
+PLOON prioritizes token efficiency over perfect type preservation. Understanding these trade-offs helps you use PLOON effectively:
+
+### Automatic Type Conversion
+
+PLOON automatically converts string values to their native types during parsing:
+
+```typescript
+// These all parse to the same value
+"1"      → 1      (number)
+"true"   → true   (boolean)
+"false"  → false  (boolean)
+"null"   → null   (null)
+```
+
+**Why?** This reduces token count by eliminating quotes, saving ~2 tokens per value.
+
+### Null Handling in Arrays
+
+Arrays containing `null` values convert nulls to empty strings:
+
+```typescript
+const data = {
+  items: [{ values: ['a', null, 'c'] }]
+}
+
+// After round-trip:
+// With preserveEmptyFields: true  → ['a', '', 'c']
+// With preserveEmptyFields: false → ['a', 'c']
+```
+
+**Why?** Null values in arrays are often noise. The `preserveEmptyFields` flag lets you control this behavior.
+
+### Acceptable Trade-offs
+
+✅ **No impact on semantics:**
+- `"1"` vs `1` - both represent the value 1
+- `"true"` vs `true` - both represent boolean true
+- `null` in arrays → removed or empty string (position doesn't matter semantically)
+
+❌ **May affect round-trip if you need:**
+- Exact string preservation (e.g., `"1"` must stay a string)
+- Null positions in arrays to be preserved exactly
+- Perfect type fidelity for all edge cases
+
+### When PLOON is Perfect
+
+✅ **Structured data** (APIs, databases, LLM responses)
+✅ **E-commerce** (products, orders, customers)
+✅ **Analytics** (metrics, events, logs)
+✅ **Configuration** (settings, preferences)
+
+### When to Use JSON Instead
+
+⚠️ **Exact type preservation required** (scientific data, financial precision)
+⚠️ **Schema-less data** (unknown structure)
+⚠️ **Human editing** (config files users modify directly)
+
+**Bottom Line:** PLOON achieves 49% token reduction by making smart assumptions about data. For 90%+ of LLM use cases, these trade-offs are invisible and save significant costs.
+
+---
+
 ## 🎨 Examples
 
 ### Simple Data
@@ -308,6 +371,93 @@ const ploon = stringify(data)
 - Objects: `customer{fields}` - depth-only paths (e.g., `2 `)
 - Mixed: Seamlessly combine arrays and objects in any structure
 
+### Primitive Arrays
+
+Arrays of primitives (strings, numbers, booleans) are encoded inline for efficiency:
+
+```typescript
+const data = {
+  products: [
+    {
+      id: 1,
+      name: 'Widget',
+      tags: ['new', 'sale', 'featured'],  // Primitive array
+      prices: [9.99, 8.99, 7.99]          // Primitive array
+    }
+  ]
+}
+
+const ploon = stringify(data)
+// [products#1](id,name,prices#(),tags#())
+//
+// 1:1|1|Widget|9.99,8.99,7.99|new,sale,featured
+
+// Notice: Primitive arrays are comma-separated inline! 🎯
+```
+
+### Handling Special Characters in Arrays
+
+Values containing commas are automatically escaped:
+
+```typescript
+const data = {
+  items: [
+    {
+      coordinates: ['40.7128,74.0060', '34.0522,118.2437'],  // Commas in values
+      descriptions: ['Hello, world', 'Goodbye, friend']
+    }
+  ]
+}
+
+const ploon = stringify(data)
+// [items#1](coordinates#(),descriptions#())
+//
+// 1:1|40.7128\,74.0060,34.0522\,118.2437|Hello\, world,Goodbye\, friend
+
+// Commas are escaped with backslash: \,
+```
+
+### preserveEmptyFields Configuration
+
+Control how null and empty values are handled in arrays:
+
+```typescript
+const data = {
+  items: [
+    {
+      values: ['a', null, 'b', '', 'c'],
+      metadata: null  // Object field (always preserved)
+    }
+  ]
+}
+
+// Default behavior (preserveEmptyFields: true)
+const ploonDefault = stringify(data)
+// [items#1](metadata,values#())
+//
+// 1:1|null|a,,b,,c
+// After parse: { values: ['a', '', 'b', '', 'c'], metadata: null }
+// Nulls → empty strings, kept in arrays
+
+// Clean mode (preserveEmptyFields: false) - Recommended for LLMs
+const ploonClean = stringify(data, {
+  config: { preserveEmptyFields: false }
+})
+// [items#1](metadata,values#())
+//
+// 1:1|null|a,b,c
+// After parse: { values: ['a', 'b', 'c'], metadata: null }
+// Nulls and empties removed from arrays, object fields preserved
+
+// 🎯 preserveEmptyFields: false saves tokens and cleans data!
+```
+
+**Key Differences:**
+- **Object fields** (like `metadata: null`): Always preserved as `null`
+- **Array elements** (like `null` in values array):
+  - `true`: Convert to empty string, keep in array
+  - `false`: Remove from array entirely (default for production)
+
 ### Custom Configuration
 
 ```typescript
@@ -387,16 +537,17 @@ ploon data.json --config=custom.json
 
 ```typescript
 {
-  fieldDelimiter: '|',       // Separates values
-  pathSeparator: ':',        // Separates depth:index (e.g., 5:1)
-  arraySizeMarker: '#',      // Array length marker
-  recordSeparator: '\n',     // Newline (standard) or ';' (compact)
-  escapeChar: '\\',          // Escape special characters
-  schemaOpen: '[',           // Schema opening bracket
-  schemaClose: ']',          // Schema closing bracket
-  fieldsOpen: '(',           // Fields opening paren
-  fieldsClose: ')',          // Fields closing paren
-  nestedSeparator: '|'       // Nested schema separator
+  fieldDelimiter: '|',         // Separates values
+  pathSeparator: ':',          // Separates depth:index (e.g., 5:1)
+  arraySizeMarker: '#',        // Array length marker
+  recordSeparator: '\n',       // Newline (standard) or ';' (compact)
+  escapeChar: '\\',            // Escape special characters
+  schemaOpen: '[',             // Schema opening bracket
+  schemaClose: ']',            // Schema closing bracket
+  fieldsOpen: '(',             // Fields opening paren
+  fieldsClose: ')',            // Fields closing paren
+  nestedSeparator: '|',        // Nested schema separator
+  preserveEmptyFields: true    // Keep null/empty in arrays (false = remove for cleaner data)
 }
 ```
 
@@ -446,17 +597,29 @@ stringify(data, { config: PLOON_COMPACT })
 - `4 ` - Deeply nested object at depth 4
 
 **Schema Notation:**
-- Arrays: `fieldName#(nestedFields)`
-- Objects: `fieldName{nestedFields}`
+- Arrays of objects: `fieldName#(nestedFields)` - e.g., `items#(id,name,price)`
+- Primitive arrays: `fieldName#()` - e.g., `tags#()`, `prices#()`
+- Objects: `fieldName{nestedFields}` - e.g., `customer{id,name}`
 - Both can nest infinitely: `address{city,country{code,name}}`
+
+**Primitive Arrays:**
+- Arrays like `['a', 'b', 'c']` or `[1, 2, 3]` are encoded inline as comma-separated values
+- Schema: `tags#()` (empty parens indicate primitive array)
+- Data: `tag1,tag2,tag3` (inline, no child records)
 
 ### Escaping
 
 Special characters are escaped with backslash `\`:
-- `\|` - Literal pipe
-- `\;` - Literal semicolon
-- `\:` - Literal colon
-- `\\` - Literal backslash
+- `\|` - Literal pipe (field delimiter)
+- `\,` - Literal comma (in primitive arrays)
+- `\;` - Literal semicolon (record separator in compact mode)
+- `\\` - Literal backslash (escape character itself)
+
+**Example:**
+```typescript
+// Value with special characters: "Hello, world | test"
+// Encoded as: Hello\, world \| test
+```
 
 ---
 
@@ -483,7 +646,9 @@ Special characters are escaped with backslash `\`:
   - PLOON: $12,545/month
   - **Savings: $6,162/month** ($73,950/year!)
 
-**Round-Trip Accuracy:** 100% (5/5 datasets)
+**Round-Trip Accuracy:** 91.7% (11/12 datasets)
+- One dataset (Algolia) has known type preservation edge cases (string "1" → number 1)
+- All other datasets achieve perfect round-trip fidelity
 
 ### Real-World Examples
 

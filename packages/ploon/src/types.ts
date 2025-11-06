@@ -42,6 +42,18 @@ export interface PloonConfig {
 
   /** Nested separator (separates nested schemas) */
   nestedSeparator: string         // default: '|'
+
+  /** Schema field separator (separates field names in schema) */
+  schemaFieldSeparator: string    // default: '|'
+
+  /** Schema whitespace (optional whitespace character in schema) */
+  schemaWhitespace: string        // default: ' '
+
+  /** Optional field marker (suffix for fields not present in all array elements) */
+  optionalFieldMarker: string     // default: '?'
+
+  /** Preserve empty arrays/objects with presence markers (fieldname() or fieldname{}) */
+  preserveEmptyFields: boolean    // default: true
 }
 
 /**
@@ -84,11 +96,12 @@ export interface ValidationResult {
  * Internal types for encoding
  */
 
-export type FieldType = 'primitive' | 'array' | 'object'
+export type FieldType = 'primitive' | 'primitiveArray' | 'array' | 'object'
 
 export interface SchemaField {
   name: string
   type: FieldType
+  isOptional?: boolean    // Field is not present in all array elements
   nested?: JsonArray | JsonObject
   fields?: SchemaField[]  // For nested object fields
 }

@@ -15,6 +15,8 @@ export interface ParsedField {
   name: string
   isArray: boolean
   isObject: boolean
+  isPrimitiveArray?: boolean  // True for arrays of primitives (marked with #() in schema)
+  isOptional?: boolean
   nested?: ParsedSchema
 }
 
@@ -73,7 +75,7 @@ function parseFields(fieldsStr: string, config: PloonConfig): ParsedField[] {
 
   while (pos < fieldsStr.length) {
     // Skip whitespace
-    while (pos < fieldsStr.length && fieldsStr[pos] === ' ') pos++
+    while (pos < fieldsStr.length && fieldsStr[pos] === config.schemaWhitespace) pos++
     if (pos >= fieldsStr.length) break
 
     // Parse next field
@@ -81,8 +83,8 @@ function parseFields(fieldsStr: string, config: PloonConfig): ParsedField[] {
     fields.push(field)
     pos = nextPos
 
-    // Skip comma separator
-    while (pos < fieldsStr.length && (fieldsStr[pos] === ',' || fieldsStr[pos] === ' ')) pos++
+    // Skip field separator
+    while (pos < fieldsStr.length && (fieldsStr[pos] === config.schemaFieldSeparator || fieldsStr[pos] === config.schemaWhitespace)) pos++
   }
 
   return fields
@@ -97,13 +99,13 @@ function parseNextField(
   start: number,
   config: PloonConfig
 ): { field: ParsedField; nextPos: number } {
-  const { arraySizeMarker, fieldsOpen, fieldsClose } = config
+  const { arraySizeMarker, fieldsOpen, fieldsClose, schemaFieldSeparator } = config
 
   let depth = 0
   let braceDepth = 0
   let pos = start
 
-  // Scan until comma at depth 0 or end of string
+  // Scan until field separator at depth 0 or end of string
   while (pos < str.length) {
     if (str[pos] === fieldsOpen) {
       depth++
@@ -113,7 +115,7 @@ function parseNextField(
       braceDepth++
     } else if (str[pos] === '}') {
       braceDepth--
-    } else if (str[pos] === ',' && depth === 0 && braceDepth === 0) {
+    } else if (str[pos] === schemaFieldSeparator && depth === 0 && braceDepth === 0) {
       break
     }
     pos++
@@ -130,14 +132,17 @@ function parseNextField(
  * Returns ParsedField with nested schema if array or object
  * Examples:
  *   - Array: "colors#(name,hex)"
+ *   - Array (optional): "colors?#(name,hex)"
  *   - Object: "customer{id,name,address{street,city}}"
+ *   - Object (optional): "customer?{id,name}"
+ *   - Primitive (optional): "email?"
  */
 function parseFieldDefinition(fieldStr: string, config: PloonConfig): ParsedField {
-  const { arraySizeMarker, fieldsOpen, fieldsClose } = config
+  const { arraySizeMarker, fieldsOpen, fieldsClose, optionalFieldMarker } = config
 
   // Find both array marker and object brace positions
-  const arrayMarkerIndex = fieldStr.indexOf(arraySizeMarker + fieldsOpen)
-  const objectBraceIndex = fieldStr.indexOf('{')
+  let arrayMarkerIndex = fieldStr.indexOf(arraySizeMarker)
+  let objectBraceIndex = fieldStr.indexOf('{')
 
   // Check which comes first (or if only one exists)
   // This handles cases like:
@@ -158,6 +163,44 @@ function parseFieldDefinition(fieldStr: string, config: PloonConfig): ParsedFiel
       // Object notation comes first - it's an object field
       hasArray = false
     }
+  }
+
+  // Detect optional field marker
+  // The marker appears before the # or { or at the end for primitives
+  let isOptional = false
+  let fieldStrWithoutMarker = fieldStr
+
+  if (hasObject) {
+    // Check before the {
+    const beforeBrace = fieldStr.slice(0, objectBraceIndex)
+    if (beforeBrace.endsWith(optionalFieldMarker)) {
+      isOptional = true
+      fieldStrWithoutMarker = beforeBrace.slice(0, -optionalFieldMarker.length) + fieldStr.slice(objectBraceIndex)
+    }
+  } else if (hasArray) {
+    // Check before the #
+    const beforeMarker = fieldStr.slice(0, arrayMarkerIndex)
+    if (beforeMarker.endsWith(optionalFieldMarker)) {
+      isOptional = true
+      fieldStrWithoutMarker = beforeMarker.slice(0, -optionalFieldMarker.length) + fieldStr.slice(arrayMarkerIndex)
+    }
+  } else {
+    // Primitive field - check at the end
+    if (fieldStr.endsWith(optionalFieldMarker)) {
+      isOptional = true
+      fieldStrWithoutMarker = fieldStr.slice(0, -optionalFieldMarker.length)
+    }
+  }
+
+  // Continue parsing with the fieldStr without optional marker
+  fieldStr = fieldStrWithoutMarker
+
+  // Recompute indices after removing optional marker
+  if (hasArray) {
+    arrayMarkerIndex = fieldStr.indexOf(arraySizeMarker)
+  }
+  if (hasObject) {
+    objectBraceIndex = fieldStr.indexOf('{')
   }
 
   if (hasObject) {
@@ -181,6 +224,7 @@ function parseFieldDefinition(fieldStr: string, config: PloonConfig): ParsedFiel
       name,
       isArray: false,
       isObject: true,
+      isOptional,
       nested: {
         rootName: name,
         count: 0,
@@ -190,11 +234,22 @@ function parseFieldDefinition(fieldStr: string, config: PloonConfig): ParsedFiel
   }
 
   if (hasArray) {
-    // Nested array field: "colors#(name,hex)"
+    // Nested array field: "colors#2(name,hex)" or "colors#(name,hex)"
     const name = fieldStr.slice(0, arrayMarkerIndex).trim()
 
-    // Find matching closing paren
-    const openPos = arrayMarkerIndex + arraySizeMarker.length
+    // Extract count and find opening paren
+    let openPos = arrayMarkerIndex + arraySizeMarker.length
+    let count = 0
+
+    // Check if there's a count before the opening paren
+    const openParenPos = fieldStr.indexOf(fieldsOpen, openPos)
+    if (openParenPos !== -1 && openParenPos > openPos) {
+      // There's content between # and ( - it's the count
+      const countStr = fieldStr.slice(openPos, openParenPos)
+      count = parseInt(countStr, 10) || 0
+      openPos = openParenPos
+    }
+
     const closePos = findMatchingCloseParen(fieldStr, openPos, fieldsOpen, fieldsClose)
 
     if (closePos === -1) {
@@ -202,18 +257,23 @@ function parseFieldDefinition(fieldStr: string, config: PloonConfig): ParsedFiel
     }
 
     // Extract nested fields string
-    const nestedFieldsStr = fieldStr.slice(openPos + 1, closePos)
+    const nestedFieldsStr = fieldStr.slice(openPos + 1, closePos).trim()
 
     // Recursively parse nested fields
     const nestedFields = parseFields(nestedFieldsStr, config)
+
+    // If nested fields are empty, this is an array of primitives (marked with #())
+    const isPrimitiveArray = nestedFields.length === 0
 
     return {
       name,
       isArray: true,
       isObject: false,
+      isPrimitiveArray,
+      isOptional,
       nested: {
         rootName: name,
-        count: 0, // Count not specified in nested schemas
+        count,
         fields: nestedFields
       }
     }
@@ -223,7 +283,8 @@ function parseFieldDefinition(fieldStr: string, config: PloonConfig): ParsedFiel
   return {
     name: fieldStr.trim(),
     isArray: false,
-    isObject: false
+    isObject: false,
+    isOptional
   }
 }
 

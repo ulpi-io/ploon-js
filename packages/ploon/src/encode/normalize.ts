@@ -159,3 +159,49 @@ export function getAllKeys(objects: JsonObject[]): string[] {
 
   return Array.from(keySet).sort()
 }
+
+/**
+ * Analyze fields in array of objects to determine which are required vs optional
+ * A field is optional if it's missing from any object OR empty (array/object with no content) in any object
+ * A field is required only if it appears in ALL objects AND always has content
+ */
+export function analyzeFields(objects: JsonObject[]): Map<string, { isOptional: boolean }> {
+  const fieldMetadata = new Map<string, { isOptional: boolean }>()
+
+  if (objects.length === 0) {
+    return fieldMetadata
+  }
+
+  // Count how many objects have each field and track if field is ever empty
+  const fieldCounts = new Map<string, number>()
+  const fieldEverEmpty = new Map<string, boolean>()
+
+  for (const obj of objects) {
+    for (const key of Object.keys(obj)) {
+      fieldCounts.set(key, (fieldCounts.get(key) || 0) + 1)
+
+      // Check if this field is empty (array with 0 elements or object with 0 keys)
+      const value = obj[key]
+      const isEmpty = (isJsonArray(value) && value.length === 0)
+                   || (isJsonObject(value) && !isJsonArray(value) && Object.keys(value).length === 0)
+
+      if (isEmpty) {
+        fieldEverEmpty.set(key, true)
+      }
+    }
+  }
+
+  // Determine if each field is optional
+  const totalObjects = objects.length
+
+  for (const [fieldName, count] of fieldCounts.entries()) {
+    const isMissingSomewhere = count < totalObjects
+    const isEmptySomewhere = fieldEverEmpty.get(fieldName) || false
+
+    fieldMetadata.set(fieldName, {
+      isOptional: isMissingSomewhere || isEmptySomewhere
+    })
+  }
+
+  return fieldMetadata
+}
