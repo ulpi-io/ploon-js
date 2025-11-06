@@ -1,6 +1,6 @@
 {
   "name": "ploon-cli",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "CLI tool for PLOON (Path-Level Object Oriented Notation) - Convert JSON/XML/YAML to the most token-efficient format",
   "type": "module",
   "bin": {
@@ -38,7 +38,7 @@
   "dependencies": {
     "commander": "^11.1.0",
     "consola": "^3.2.3",
-    "ploon": "^1.0.5",
+    "ploon": "^1.0.6",
     "tiktoken": "^1.0.22"
   },
   "devDependencies": {
