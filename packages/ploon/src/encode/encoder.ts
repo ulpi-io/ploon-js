@@ -21,12 +21,8 @@ export function encode(data: JsonValue, config: PloonConfig): string {
   // Generate schema
   const schema = generateSchema(data, config)
 
-  // Find root array
+  // Find root array (auto-wraps single objects/primitives)
   const rootArray = findRootArray(data)
-
-  if (!rootArray) {
-    throw new Error('Data must contain at least one array')
-  }
 
   // Encode records
   const records = encodeArray(rootArray, new PathWriter(config), config)
@@ -40,8 +36,9 @@ export function encode(data: JsonValue, config: PloonConfig): string {
 
 /**
  * Find root array in data
+ * Auto-wraps single objects/primitives into arrays
  */
-function findRootArray(data: JsonValue): JsonArray | null {
+function findRootArray(data: JsonValue): JsonArray {
   if (isJsonArray(data)) {
     return data
   }
@@ -52,9 +49,12 @@ function findRootArray(data: JsonValue): JsonArray | null {
         return value
       }
     }
+    // No array found - wrap the object itself as a single-element array
+    return [data]
   }
 
-  return null
+  // Primitive value - wrap as single-element array
+  return [data]
 }
 
 /**

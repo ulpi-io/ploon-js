@@ -14,9 +14,10 @@ export function generateSchema(
   data: JsonValue,
   config: PloonConfig
 ): string {
-  // Find the root array
+  // Find the root array (auto-wraps single objects/primitives)
   const { name, array } = findRootArray(data)
 
+  // array should never be null now due to auto-wrapping
   if (!array) {
     throw new Error('Data must contain at least one array to generate PLOON schema')
   }
@@ -31,6 +32,7 @@ export function generateSchema(
  * Find the root array in the data
  * If data is an object with one array property, use that
  * If data is an array, name it 'root'
+ * If data is an object with no arrays, wrap it as a single-element array
  */
 function findRootArray(data: JsonValue): { name: string; array: JsonArray | null } {
   if (isJsonArray(data)) {
@@ -44,9 +46,13 @@ function findRootArray(data: JsonValue): { name: string; array: JsonArray | null
         return { name: key, array: value }
       }
     }
+
+    // No array found - wrap the object itself as a single-element array
+    return { name: 'data', array: [data] }
   }
 
-  return { name: 'root', array: null }
+  // Primitive value - wrap as single-element array
+  return { name: 'data', array: [data] }
 }
 
 /**
