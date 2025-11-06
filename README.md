@@ -4,6 +4,8 @@
 
 PLOON achieves **49% token reduction vs JSON** and **14% better than TOON** through dual path notation (depth:index for arrays, depth for objects) and single schema declaration, with full support for nested objects and arrays in any combination.
 
+**Inspired by [TOON Format](https://github.com/jpolvora/toon)**. PLOON offers an alternative approach using path-based hierarchy instead of indentation, achieving comparable token efficiency while solving most of TOON's tradeoffs.
+
 [![npm version](https://img.shields.io/npm/v/ploon.svg)](https://www.npmjs.com/package/ploon)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
