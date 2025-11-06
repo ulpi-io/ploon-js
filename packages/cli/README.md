@@ -6,7 +6,7 @@ PLOON achieves **49.1% token reduction vs JSON** and **14.1% better than TOON** 
 
 **Credits**
 
-Inspired by TOON Format. PLOON offers an alternative approach using path-based hierarchy instead of indentation, achieving comparable token efficiency with different trade-offs.
+Inspired by [TOON Format](https://github.com/toon-format/toon). PLOON offers an alternative approach using path-based hierarchy instead of indentation, achieving comparable token efficiency with different trade-offs.
 
 [![npm version](https://img.shields.io/npm/v/ploon-cli.svg)](https://www.npmjs.com/package/ploon-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
