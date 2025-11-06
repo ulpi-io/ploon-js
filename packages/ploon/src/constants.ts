@@ -21,7 +21,7 @@ export const PLOON_STANDARD: PloonConfig = {
   schemaFieldSeparator: '|',
   schemaWhitespace: ' ',
   optionalFieldMarker: '?',
-  preserveEmptyFields: true
+  preserveEmptyFields: false
 }
 
 /**
