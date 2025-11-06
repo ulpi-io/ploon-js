@@ -1,0 +1,47 @@
+products
+  id 1
+  name Shirt
+  price 29.99
+  colors
+    name Red
+    hex #FF0000
+    sizes
+      size S
+      sku SH-R-S
+      stock 50
+      warehouses
+        name NYC Warehouse
+        address 123 5th Ave, New York
+        coordinates 40.7580,-73.9855
+        qty 20
+        name LA Warehouse
+        address 456 Sunset Blvd, Los Angeles
+        coordinates 34.0522,-118.2437
+        qty 30
+      size M
+      sku SH-R-M
+      stock 30
+      warehouses
+        name NYC Warehouse
+        address 123 5th Ave, New York
+        coordinates 40.7580,-73.9855
+        qty 15
+        name LA Warehouse
+        address 456 Sunset Blvd, Los Angeles
+        coordinates 34.0522,-118.2437
+        qty 15
+    name Blue
+    hex #0000FF
+    sizes
+      size S
+      sku SH-B-S
+      stock 40
+      warehouses
+        name NYC Warehouse
+        address 123 5th Ave, New York
+        coordinates 40.7580,-73.9855
+        qty 25
+        name LA Warehouse
+        address 456 Sunset Blvd, Los Angeles
+        coordinates 34.0522,-118.2437
+        qty 15

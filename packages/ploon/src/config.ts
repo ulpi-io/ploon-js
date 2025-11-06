@@ -60,7 +60,10 @@ export function validateConfig(config: PloonConfig): void {
     'schemaClose',
     'fieldsOpen',
     'fieldsClose',
-    'nestedSeparator'
+    'nestedSeparator',
+    'schemaFieldSeparator',
+    'schemaWhitespace',
+    'optionalFieldMarker'
   ]
 
   for (const field of singleCharFields) {
@@ -93,6 +96,9 @@ export function validateConfig(config: PloonConfig): void {
   addChar(config.fieldsOpen, 'fieldsOpen')
   addChar(config.fieldsClose, 'fieldsClose')
   addChar(config.nestedSeparator, 'nestedSeparator')
+  addChar(config.schemaFieldSeparator, 'schemaFieldSeparator')
+  addChar(config.schemaWhitespace, 'schemaWhitespace')
+  addChar(config.optionalFieldMarker, 'optionalFieldMarker')
 
   for (const [char, fields] of chars.entries()) {
     if (fields.length > 1) {

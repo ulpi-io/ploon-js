@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+  <id>1</id>
+  <name>Shirt</name>
+  <price>29.99</price>
+  <colors>
+    <name>Red</name>
+    <hex>#FF0000</hex>
+    <sizes>
+      <size>S</size>
+      <sku>SH-R-S</sku>
+      <stock>50</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>20</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>30</qty>
+      </warehouses>
+    </sizes>
+    <sizes>
+      <size>M</size>
+      <sku>SH-R-M</sku>
+      <stock>30</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>15</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>15</qty>
+      </warehouses>
+    </sizes>
+  </colors>
+  <colors>
+    <name>Blue</name>
+    <hex>#0000FF</hex>
+    <sizes>
+      <size>S</size>
+      <sku>SH-B-S</sku>
+      <stock>40</stock>
+      <warehouses>
+        <name>NYC Warehouse</name>
+        <address>123 5th Ave, New York</address>
+        <coordinates>40.7580,-73.9855</coordinates>
+        <qty>25</qty>
+      </warehouses>
+      <warehouses>
+        <name>LA Warehouse</name>
+        <address>456 Sunset Blvd, Los Angeles</address>
+        <coordinates>34.0522,-118.2437</coordinates>
+        <qty>15</qty>
+      </warehouses>
+    </sizes>
+  </colors>
+</products>

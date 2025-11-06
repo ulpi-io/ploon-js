@@ -1,4 +1,4 @@
-import { stringify, parse } from './packages/ploon/dist/index.js'
+import { stringify, parse } from '../../packages/ploon/dist/index.js'
 
 console.log('🔄 PLOON Round-Trip Test\n')
 console.log('Testing: parse(stringify(data)) === data\n')

@@ -1,0 +1,63 @@
+{
+  "timestamp": "2025-11-06T10:36:56.192Z",
+  "testCases": {
+    "algolia": {
+      "passed": false,
+      "original_chars": 212132,
+      "regenerated_chars": 135732,
+      "char_difference": 76400,
+      "char_difference_percent": "36.02%",
+      "data_equality": "different",
+      "error_details": {
+        "path": "root.results[0].hits[0].categories_without_path[0]",
+        "reason": "null mismatch: null vs "
+      }
+    },
+    "companies": {
+      "passed": true,
+      "original_chars": 857,
+      "regenerated_chars": 149,
+      "char_difference": 708,
+      "char_difference_percent": "82.61%",
+      "data_equality": "identical"
+    },
+    "ecommerce": {
+      "passed": true,
+      "original_chars": 3198,
+      "regenerated_chars": 1372,
+      "char_difference": 1826,
+      "char_difference_percent": "57.10%",
+      "data_equality": "identical"
+    },
+    "orders": {
+      "passed": true,
+      "original_chars": 513,
+      "regenerated_chars": 113,
+      "char_difference": 400,
+      "char_difference_percent": "77.97%",
+      "data_equality": "identical"
+    },
+    "products": {
+      "passed": true,
+      "original_chars": 377,
+      "regenerated_chars": 159,
+      "char_difference": 218,
+      "char_difference_percent": "57.82%",
+      "data_equality": "identical"
+    },
+    "users": {
+      "passed": true,
+      "original_chars": 47,
+      "regenerated_chars": 29,
+      "char_difference": 18,
+      "char_difference_percent": "38.30%",
+      "data_equality": "identical"
+    }
+  },
+  "summary": {
+    "total": 6,
+    "passed": 5,
+    "failed": 1,
+    "pass_rate": "83.3%"
+  }
+}

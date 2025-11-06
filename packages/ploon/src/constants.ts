@@ -17,7 +17,11 @@ export const PLOON_STANDARD: PloonConfig = {
   schemaClose: ']',
   fieldsOpen: '(',
   fieldsClose: ')',
-  nestedSeparator: '|'
+  nestedSeparator: '|',
+  schemaFieldSeparator: '|',
+  schemaWhitespace: ' ',
+  optionalFieldMarker: '?',
+  preserveEmptyFields: true
 }
 
 /**
