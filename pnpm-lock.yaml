@@ -40,8 +40,8 @@ importers:
         specifier: ^3.2.3
         version: 3.4.2
       ploon:
-        specifier: ^1.0.3
-        version: 1.0.3
+        specifier: ^1.0.5
+        version: 1.0.5
       tiktoken:
         specifier: ^1.0.22
         version: 1.0.22
@@ -1407,8 +1407,8 @@ packages:
   pkg-types@1.3.1:
     resolution: {integrity: sha512-/Jm5M4RvtBFVkKWRu2BLUTNP8/M2a+UwuAX+ae4770q1qVGtfjG+WTCupoZixokjmHiry8uI+dlY8KXYV5HVVQ==}
 
-  ploon@1.0.3:
-    resolution: {integrity: sha512-xvz3Dgfq+w+uXVok+4mDogbWBtCXxk+o9KKM67Fr2Q/ozttttggKn6bdSU4zfs2RcsnQdBiuwmWPittv2WTrNA==}
+  ploon@1.0.5:
+    resolution: {integrity: sha512-qZx4hR3FUkUR9xcCPgDAh7nPX4T2gbUIAnoEloCaRdkUpp/dxR4cMaM2IRm5gnfqsBqgNicOmFUTnrPOF5ihFQ==}
 
   pretty-format@29.7.0:
     resolution: {integrity: sha512-Pdlw/oPxN+aXdmM9R00JVC9WVFoCLTKJvDVLgmJ+qAffBMxsV85l/Lu7sNx4zSzPyoL2euImuEwHhOXdEgNFZQ==}
@@ -3238,7 +3238,7 @@ snapshots:
       mlly: 1.8.0
       pathe: 2.0.3
 
-  ploon@1.0.3:
+  ploon@1.0.5:
     dependencies:
       fast-xml-parser: 4.5.3
       yaml: 2.8.1
