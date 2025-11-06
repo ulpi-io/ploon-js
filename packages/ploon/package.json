@@ -1,6 +1,6 @@
 {
   "name": "ploon",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Path-Level Object Oriented Notation - The Most Token-Efficient Format for Nested Hierarchical Data",
   "type": "module",
   "sideEffects": false,

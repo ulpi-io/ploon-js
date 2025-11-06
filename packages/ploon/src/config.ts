@@ -68,7 +68,7 @@ export function validateConfig(config: PloonConfig): void {
 
   for (const field of singleCharFields) {
     const value = config[field]
-    if (value.length !== 1) {
+    if (typeof value === 'string' && value.length !== 1) {
       errors.push(`${field} must be exactly 1 character, got: "${value}"`)
     }
   }
