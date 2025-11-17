@@ -1,20 +1,63 @@
-[
-  {
-    "id": 1,
-    "name": "Alice",
-    "age": 30,
-    "city": "New York"
-  },
-  {
-    "id": 2,
-    "name": "Bob",
-    "age": 25,
-    "city": "Los Angeles"
-  },
-  {
-    "id": 3,
-    "name": "Charlie",
-    "age": 35,
-    "city": "Chicago"
-  }
-]
+{
+  "ploons": [
+    {
+      "ploonId": "pl001",
+      "name": "Alpha Ploon",
+      "attributes": {
+        "color": "blue",
+        "size": 42,
+        "isActive": true,
+        "tags": ["fast", "durable", "water-resistant"]
+      },
+      "measurements": [
+        { "type": "length", "value": 120.5, "unit": "cm" },
+        { "type": "weight", "value": 15.0, "unit": "kg" }
+      ],
+      "history": [
+        {
+          "date": "2024-01-15",
+          "event": "manufactured",
+          "location": "Factory A"
+        },
+        {
+          "date": "2024-02-10",
+          "event": "shipped",
+          "location": "Warehouse B"
+        }
+      ]
+    },
+    {
+      "ploonId": "pl002",
+      "name": "Beta Ploon",
+      "attributes": {
+        "color": "red",
+        "size": 38,
+        "isActive": false,
+        "tags": ["lightweight", "compact"]
+      },
+      "measurements": [
+        { "type": "length", "value": 95.3, "unit": "cm" },
+        { "type": "weight", "value": 10.1, "unit": "kg" }
+      ],
+      "history": [
+        {
+          "date": "2024-03-05",
+          "event": "manufactured",
+          "location": "Factory C"
+        },
+        {
+          "date": "2024-03-20",
+          "event": "returned",
+          "location": "Customer Center"
+        }
+      ],
+      "additionalInfo": {
+        "warrantyYears": 3,
+        "supportContact": {
+          "email": "support@ploon.com",
+          "phone": "+1234567890"
+        }
+      }
+    }
+  ]
+}

@@ -2,50 +2,80 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>JSON to PLOON</title>
+    <title>JSON → PLOON Converter</title>
     <style>
+      :root {
+        color-scheme: light dark;
+        font-family: 'Consolas', 'Menlo', 'SFMono-Regular', monospace;
+      }
       body {
-        font-family: 'Consolas', 'Menlo', monospace;
-        margin: 20px auto;
-        max-width: 820px;
-        padding: 30px;
-        background: #f5f5f5;
+        margin: 0;
+        padding: 32px;
+        background: #eef2f5;
+        display: flex;
+        justify-content: center;
       }
       .panel {
+        width: min(960px, 100%);
         background: #fff;
-        padding: 24px;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+        padding: 32px;
+        border: 1px solid #dbe5f0;
       }
       h1 {
-        margin-top: 0;
+        margin: 0 0 24px;
+        font-size: 28px;
+        color: #0f172a;
       }
       textarea {
         box-sizing: border-box;
         width: 100%;
-        min-height: 180px;
-        padding: 12px;
-        border: 1px solid #d0d7de;
-        border-radius: 8px;
+        min-height: 200px;
+        padding: 14px;
+        border-radius: 10px;
+        border: 1px solid #cbd5f5;
+        background: #f8fafc;
         font-family: inherit;
         font-size: 14px;
-        background: #fcfcfc;
+        line-height: 1.5;
         resize: vertical;
+      }
+      label {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 6px;
+        color: #1f2937;
+      }
+      .row {
+        display: grid;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+      .row.two-col {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        align-items: end;
       }
       .controls {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
-        margin: 16px 0;
+        margin: 18px 0;
       }
       button {
-        background: #007acc;
-        color: #fff;
-        padding: 10px 18px;
+        background: #2563eb;
         border: none;
-        border-radius: 6px;
-        cursor: pointer;
+        border-radius: 8px;
+        color: #fff;
+        padding: 11px 18px;
         font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+      button.secondary {
+        background: #e2e8f0;
+        color: #0f172a;
       }
       button:disabled {
         opacity: 0.5;
@@ -53,205 +83,207 @@
       }
       .stats {
         font-size: 13px;
-        color: #4d5966;
-        margin-top: 8px;
+        color: #475569;
+        margin-top: 10px;
       }
       .error {
-        margin-top: 12px;
-        padding: 10px 12px;
-        border-radius: 6px;
-        background: #ffecec;
-        color: #9b1c1c;
-        border: 1px solid #ffb3b3;
+        margin-top: 14px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        background: #fef2f2;
+        color: #b91c1c;
+        border: 1px solid #fecaca;
         display: none;
       }
-      label {
+      .options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
         font-size: 14px;
-        font-weight: 600;
-        display: block;
-        margin-bottom: 6px;
+        color: #334155;
+      }
+      .options label {
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin: 0;
       }
       input[type='file'] {
-        margin-bottom: 14px;
+        font-family: inherit;
       }
     </style>
   </head>
   <body>
     <div class="panel">
-      <h1>JSON to PLOON Converter</h1>
+      <h1>JSON → PLOON Converter</h1>
 
-      <label for="fileInput">Upload JSON file</label>
-      <input id="fileInput" type="file" accept=".json" />
+      <div class="row">
+        <label for="fileInput">Upload JSON file</label>
+        <input id="fileInput" type="file" accept=".json,application/json" />
+      </div>
 
-      <label for="jsonInput">Or paste JSON</label>
-      <textarea
-        id="jsonInput"
-        placeholder='{"users":[{"id":1,"name":"Ada"}]}'
-      ></textarea>
+      <div class="row">
+        <label for="jsonInput">Or paste JSON</label>
+        <textarea
+          id="jsonInput"
+          placeholder='{"ploons":[{"ploonId":"pl001","name":"Alpha"}]}'
+        ></textarea>
+      </div>
+
+      <div class="options" aria-label="Conversion settings">
+        <label
+          ><input type="radio" name="format" value="compact" checked /> Compact
+          (;) </label
+        >
+        <label
+          ><input type="radio" name="format" value="standard" /> Standard
+          (multiline)</label
+        >
+        <label
+          ><input type="checkbox" id="minifyToggle" checked />
+          Minify&nbsp;schema</label
+        >
+      </div>
 
       <div class="controls">
         <button id="convertBtn" type="button">Convert to PLOON</button>
         <button id="copyBtn" type="button" disabled>Copy output</button>
-        <button id="downloadBtn" type="button" disabled>Download .ploon</button>
-        <button id="clearBtn" type="button">Clear</button>
+        <button id="downloadBtn" type="button" disabled>
+          Download .ploon
+        </button>
+        <button id="clearBtn" class="secondary" type="button">Clear</button>
       </div>
 
-      <label for="output">PLOON output</label>
-      <textarea id="output" readonly></textarea>
+      <div class="row">
+        <label for="output">PLOON output</label>
+        <textarea id="output" readonly></textarea>
+      </div>
       <div class="stats" id="stats"></div>
       <div class="error" id="errorBox"></div>
     </div>
 
-    <script>
-      const $ = (id) => document.getElementById(id);
+    <script type="module">
+      import { stringify, minify } from './ploon-browser.js'
 
-      const fileInput = $('fileInput');
-      const jsonInput = $('jsonInput');
-      const outputArea = $('output');
-      const statsBox = $('stats');
-      const copyBtn = $('copyBtn');
-      const downloadBtn = $('downloadBtn');
-      const errorBox = $('errorBox');
+      const $ = id => document.getElementById(id)
 
-      $('convertBtn').addEventListener('click', handleConvert);
-      $('copyBtn').addEventListener('click', handleCopy);
-      $('downloadBtn').addEventListener('click', handleDownload);
-      $('clearBtn').addEventListener('click', handleClear);
-      fileInput.addEventListener('change', handleFileUpload);
+      const fileInput = $('fileInput')
+      const jsonInput = $('jsonInput')
+      const outputArea = $('output')
+      const statsBox = $('stats')
+      const copyBtn = $('copyBtn')
+      const downloadBtn = $('downloadBtn')
+      const errorBox = $('errorBox')
+      const minifyToggle = $('minifyToggle')
+      const formatRadios = Array.from(document.querySelectorAll("input[name='format']"))
+
+      $('convertBtn').addEventListener('click', handleConvert)
+      $('copyBtn').addEventListener('click', handleCopy)
+      $('downloadBtn').addEventListener('click', handleDownload)
+      $('clearBtn').addEventListener('click', handleClear)
+      fileInput.addEventListener('change', handleFileUpload)
+
+      function getSelectedFormat() {
+        return formatRadios.find(radio => radio.checked)?.value ?? 'compact'
+      }
 
       function handleFileUpload(event) {
-        const file = event.target.files?.[0];
-        if (!file) return;
+        const file = event.target.files?.[0]
+        if (!file) return
 
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          jsonInput.value = e.target?.result ?? '';
-          resetState(false);
-        };
-        reader.readAsText(file);
+        const reader = new FileReader()
+        reader.onload = e => {
+          jsonInput.value = e.target?.result ?? ''
+          resetState(false)
+        }
+        reader.readAsText(file)
       }
 
       function handleConvert() {
-        const raw = jsonInput.value.trim();
+        const raw = jsonInput.value.trim()
         if (!raw) {
-          showError('Bitte füge JSON ein oder lade eine Datei hoch.');
-          return;
+          showError('Bitte füge JSON ein oder lade eine Datei hoch.')
+          return
         }
 
         try {
-          const parsed = JSON.parse(raw);
-          const ploon = toPloon(parsed);
-          outputArea.value = ploon;
-          updateStats(raw.length, ploon.length);
-          copyBtn.disabled = false;
-          downloadBtn.disabled = false;
-          showError('');
+          const parsed = JSON.parse(raw)
+          const format = getSelectedFormat()
+          const separator = format === 'compact' ? ';' : '\n'
+          let ploon = stringify(parsed, { format })
+          if (minifyToggle.checked) {
+            ploon = minify(ploon)
+          }
+          ploon = collapseDoubleSeparator(ploon, separator)
+          outputArea.value = ploon
+          updateStats(raw.length, ploon.length)
+          copyBtn.disabled = false
+          downloadBtn.disabled = false
+          showError('')
         } catch (err) {
-          showError(err instanceof Error ? err.message : String(err));
-          outputArea.value = '';
-          copyBtn.disabled = true;
-          downloadBtn.disabled = true;
-          statsBox.textContent = '';
+          showError(err instanceof Error ? err.message : String(err))
+          resetState(false)
         }
       }
 
-      function handleCopy() {
-        outputArea.select();
-        document.execCommand('copy');
+      async function handleCopy() {
+        const text = outputArea.value
+        if (!text) return
+
+        try {
+          await navigator.clipboard.writeText(text)
+        } catch {
+          outputArea.select()
+          document.execCommand('copy')
+        }
       }
 
       function handleDownload() {
-        const blob = new Blob([outputArea.value], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'output.ploon';
-        link.click();
-        URL.revokeObjectURL(url);
+        const blob = new Blob([outputArea.value], { type: 'text/plain' })
+        const url = URL.createObjectURL(blob)
+        const link = document.createElement('a')
+        link.href = url
+        link.download = 'output.ploon'
+        link.click()
+        URL.revokeObjectURL(url)
       }
 
       function handleClear() {
-        jsonInput.value = '';
-        resetState();
-        fileInput.value = '';
+        jsonInput.value = ''
+        fileInput.value = ''
+        resetState()
       }
 
       function resetState(clearErrors = true) {
-        outputArea.value = '';
-        statsBox.textContent = '';
-        copyBtn.disabled = true;
-        downloadBtn.disabled = true;
-        if (clearErrors) showError('');
+        outputArea.value = ''
+        statsBox.textContent = ''
+        copyBtn.disabled = true
+        downloadBtn.disabled = true
+        if (clearErrors) showError('')
       }
 
       function showError(message) {
-        errorBox.textContent = message;
-        errorBox.style.display = message ? 'block' : 'none';
+        errorBox.textContent = message
+        errorBox.style.display = message ? 'block' : 'none'
       }
 
       function updateStats(before, after) {
         if (!before) {
-          statsBox.textContent = '';
-          return;
+          statsBox.textContent = ''
+          return
         }
-        const diff = before - after;
-        const percent = Math.round((diff / before) * 100);
-        statsBox.textContent = `${before} → ${after} Zeichen (${percent}% Reduktion)`;
+        const diff = before - after
+        const percent = Math.round((diff / before) * 100)
+        statsBox.textContent = `${before} → ${after} Zeichen (${percent}% Reduktion)`
       }
 
-      function toPloon(data) {
-        if (Array.isArray(data)) {
-          return encodeCollection('items', data);
-        }
-
-        if (typeof data === 'object' && data !== null) {
-          const sections = [];
-          for (const [key, value] of Object.entries(data)) {
-            if (Array.isArray(value)) {
-              sections.push(encodeCollection(key, value));
-            } else {
-              sections.push(`${key}: ${stringifyValue(value)}`);
-            }
-          }
-          return sections.filter(Boolean).join('\n\n');
-        }
-
-        return formatPrimitive(data);
-      }
-
-      function encodeCollection(name, arr) {
-        if (!arr.length) return `[${name}#0]()`;
-
-        if (typeof arr[0] === 'object' && arr[0] !== null) {
-          const keys = Object.keys(arr[0]);
-          const rows = arr
-            .map((item, idx) => {
-              const values = keys.map((key) =>
-                formatPrimitive(item[key], true)
-              );
-              return `${idx + 1}|${values.join('|')}`;
-            })
-            .join('\n');
-          return `[${name}#${arr.length}](${keys.join(',')})\n\n${rows}`;
-        }
-
-        const rows = arr
-          .map((value, idx) => `${idx + 1}|${formatPrimitive(value, true)}`)
-          .join('\n');
-        return `[${name}#${arr.length}](value)\n\n${rows}`;
-      }
-
-      function formatPrimitive(value, allowEmpty = false) {
-        if (value === null || value === undefined) return allowEmpty ? '' : 'null';
-        if (typeof value === 'string') return value.replace(/\n/g, '\\n');
-        return String(value);
-      }
-
-      function stringifyValue(value) {
-        if (typeof value === 'object' && value !== null) {
-          return JSON.stringify(value);
-        }
-        return formatPrimitive(value);
+      function collapseDoubleSeparator(text, separator) {
+        if (!separator) return text
+        const double = separator + separator
+        const index = text.indexOf(double)
+        if (index === -1) return text
+        return text.slice(0, index) + separator + text.slice(index + double.length)
       }
     </script>
   </body>
