@@ -1,1 +1,258 @@
-<!DOCTYPE html><html><head><title>JSON to PLOON</title><style>body{font-family:monospace;margin:20px auto;max-width:800px;padding:20px;background:#f5f5f5}textarea{width:100%;height:200px;padding:10px;border:1px solid #ddd;border-radius:5px;font-family:monospace}button{background:#007acc;color:white;padding:10px 20px;border:none;border-radius:5px;margin:5px}</style></head><body><h1>JSON to PLOON Converter</h1><input type=file id=fi accept=.json><br><br><textarea id=ji placeholder='Paste JSON here...'></textarea><br><br><button onclick=convert>Convert</button><button onclick=copy id=cp disabled>Copy</button><button onclick=down id=dl disabled>Download</button><button onclick=clr>Clear</button><br><br><textarea id=out readonly></textarea><div id=st></div><script>function convert(){let t=document.getElementById('ji').value.trim();if(!t)return;try{let d=JSON.parse(t);let o=Array.isArray(d)?d.map((x,i)=>i+1+'|'+Object.values(x).join('|')).join('\n'):JSON.stringify(d,0,0);if(Array.isArray(d)&&d.length){let keys=Object.keys(d[0]||{});if(typeof d[0]=='object')o=[d.length+']('+keys.join(',')+')\n\n'+d.map((x,i)=>i+1+'|'+keys.map(k=>x[k]??'').join('|')).join('\n')}document.getElementById('out').value=o;let before=t.length;let after=o.length;let perc=Math.round((before-after)/before*100);document.getElementById('st').innerHTML=before+'→'+after+' chars ('+perc+'%)';document.getElementById('cp').disabled=false;document.getElementById('dl').disabled=false}catch(e){alert('Invalid JSON')}}function copy(){let o=document.getElementById('out');o.select();document.execCommand('copy')}function down(){let b=new Blob([document.getElementById('out').value]);let u=URL.createObjectURL(b);let a=document.createElement('a');a.href=u;a.download='output.ploon';a.click()}function clr(){document.getElementById('ji').value='';document.getElementById('out').value='';document.getElementById('cp').disabled=true;document.getElementById('dl').disabled=true}document.getElementById('fi').addEventListener('change',function(e){let f=e.target.files[0];if(f){let r=new FileReader();r.onload=e=>document.getElementById('ji').value=e.target.result;r.readAsText(f)}})</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>JSON to PLOON</title>
+    <style>
+      body {
+        font-family: 'Consolas', 'Menlo', monospace;
+        margin: 20px auto;
+        max-width: 820px;
+        padding: 30px;
+        background: #f5f5f5;
+      }
+      .panel {
+        background: #fff;
+        padding: 24px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+      h1 {
+        margin-top: 0;
+      }
+      textarea {
+        box-sizing: border-box;
+        width: 100%;
+        min-height: 180px;
+        padding: 12px;
+        border: 1px solid #d0d7de;
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 14px;
+        background: #fcfcfc;
+        resize: vertical;
+      }
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 16px 0;
+      }
+      button {
+        background: #007acc;
+        color: #fff;
+        padding: 10px 18px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .stats {
+        font-size: 13px;
+        color: #4d5966;
+        margin-top: 8px;
+      }
+      .error {
+        margin-top: 12px;
+        padding: 10px 12px;
+        border-radius: 6px;
+        background: #ffecec;
+        color: #9b1c1c;
+        border: 1px solid #ffb3b3;
+        display: none;
+      }
+      label {
+        font-size: 14px;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 6px;
+      }
+      input[type='file'] {
+        margin-bottom: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="panel">
+      <h1>JSON to PLOON Converter</h1>
+
+      <label for="fileInput">Upload JSON file</label>
+      <input id="fileInput" type="file" accept=".json" />
+
+      <label for="jsonInput">Or paste JSON</label>
+      <textarea
+        id="jsonInput"
+        placeholder='{"users":[{"id":1,"name":"Ada"}]}'
+      ></textarea>
+
+      <div class="controls">
+        <button id="convertBtn" type="button">Convert to PLOON</button>
+        <button id="copyBtn" type="button" disabled>Copy output</button>
+        <button id="downloadBtn" type="button" disabled>Download .ploon</button>
+        <button id="clearBtn" type="button">Clear</button>
+      </div>
+
+      <label for="output">PLOON output</label>
+      <textarea id="output" readonly></textarea>
+      <div class="stats" id="stats"></div>
+      <div class="error" id="errorBox"></div>
+    </div>
+
+    <script>
+      const $ = (id) => document.getElementById(id);
+
+      const fileInput = $('fileInput');
+      const jsonInput = $('jsonInput');
+      const outputArea = $('output');
+      const statsBox = $('stats');
+      const copyBtn = $('copyBtn');
+      const downloadBtn = $('downloadBtn');
+      const errorBox = $('errorBox');
+
+      $('convertBtn').addEventListener('click', handleConvert);
+      $('copyBtn').addEventListener('click', handleCopy);
+      $('downloadBtn').addEventListener('click', handleDownload);
+      $('clearBtn').addEventListener('click', handleClear);
+      fileInput.addEventListener('change', handleFileUpload);
+
+      function handleFileUpload(event) {
+        const file = event.target.files?.[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          jsonInput.value = e.target?.result ?? '';
+          resetState(false);
+        };
+        reader.readAsText(file);
+      }
+
+      function handleConvert() {
+        const raw = jsonInput.value.trim();
+        if (!raw) {
+          showError('Bitte füge JSON ein oder lade eine Datei hoch.');
+          return;
+        }
+
+        try {
+          const parsed = JSON.parse(raw);
+          const ploon = toPloon(parsed);
+          outputArea.value = ploon;
+          updateStats(raw.length, ploon.length);
+          copyBtn.disabled = false;
+          downloadBtn.disabled = false;
+          showError('');
+        } catch (err) {
+          showError(err instanceof Error ? err.message : String(err));
+          outputArea.value = '';
+          copyBtn.disabled = true;
+          downloadBtn.disabled = true;
+          statsBox.textContent = '';
+        }
+      }
+
+      function handleCopy() {
+        outputArea.select();
+        document.execCommand('copy');
+      }
+
+      function handleDownload() {
+        const blob = new Blob([outputArea.value], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'output.ploon';
+        link.click();
+        URL.revokeObjectURL(url);
+      }
+
+      function handleClear() {
+        jsonInput.value = '';
+        resetState();
+        fileInput.value = '';
+      }
+
+      function resetState(clearErrors = true) {
+        outputArea.value = '';
+        statsBox.textContent = '';
+        copyBtn.disabled = true;
+        downloadBtn.disabled = true;
+        if (clearErrors) showError('');
+      }
+
+      function showError(message) {
+        errorBox.textContent = message;
+        errorBox.style.display = message ? 'block' : 'none';
+      }
+
+      function updateStats(before, after) {
+        if (!before) {
+          statsBox.textContent = '';
+          return;
+        }
+        const diff = before - after;
+        const percent = Math.round((diff / before) * 100);
+        statsBox.textContent = `${before} → ${after} Zeichen (${percent}% Reduktion)`;
+      }
+
+      function toPloon(data) {
+        if (Array.isArray(data)) {
+          return encodeCollection('items', data);
+        }
+
+        if (typeof data === 'object' && data !== null) {
+          const sections = [];
+          for (const [key, value] of Object.entries(data)) {
+            if (Array.isArray(value)) {
+              sections.push(encodeCollection(key, value));
+            } else {
+              sections.push(`${key}: ${stringifyValue(value)}`);
+            }
+          }
+          return sections.filter(Boolean).join('\n\n');
+        }
+
+        return formatPrimitive(data);
+      }
+
+      function encodeCollection(name, arr) {
+        if (!arr.length) return `[${name}#0]()`;
+
+        if (typeof arr[0] === 'object' && arr[0] !== null) {
+          const keys = Object.keys(arr[0]);
+          const rows = arr
+            .map((item, idx) => {
+              const values = keys.map((key) =>
+                formatPrimitive(item[key], true)
+              );
+              return `${idx + 1}|${values.join('|')}`;
+            })
+            .join('\n');
+          return `[${name}#${arr.length}](${keys.join(',')})\n\n${rows}`;
+        }
+
+        const rows = arr
+          .map((value, idx) => `${idx + 1}|${formatPrimitive(value, true)}`)
+          .join('\n');
+        return `[${name}#${arr.length}](value)\n\n${rows}`;
+      }
+
+      function formatPrimitive(value, allowEmpty = false) {
+        if (value === null || value === undefined) return allowEmpty ? '' : 'null';
+        if (typeof value === 'string') return value.replace(/\n/g, '\\n');
+        return String(value);
+      }
+
+      function stringifyValue(value) {
+        if (typeof value === 'object' && value !== null) {
+          return JSON.stringify(value);
+        }
+        return formatPrimitive(value);
+      }
+    </script>
+  </body>
+</html>
